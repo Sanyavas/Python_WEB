@@ -129,10 +129,4 @@ def main():
 
 
 if __name__ == '__main__':
-
-    # storage_dir = pathlib.Path().joinpath('storage')
-    # file_storage = storage_dir / 'data.json'
-    # if not file_storage.exists():
-    #     with open('storage/data.json', 'w', encoding='utf-8') as fd:
-    #         json.dump({}, fd, ensure_ascii=False, indent=4)
     main()
