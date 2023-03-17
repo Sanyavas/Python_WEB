@@ -8,8 +8,11 @@ import socket
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from threading import Thread
 
+from jinja2 import Environment, FileSystemLoader
+
 BUFFER_SIZE = 1024
 BASE_DIR = pathlib.Path()
+env = Environment(loader=FileSystemLoader('templates'))
 PORT_HTTP = 3000
 SOCKET_HOST = '127.0.0.1'
 SOCKET_PORT = 4000
@@ -33,6 +36,8 @@ class TheBestFastApp(BaseHTTPRequestHandler):
                 self.send_html('index.html')
             case '/message':
                 self.send_html('message.html')
+            case '/blog':
+                self.render_template('blog.html')
             case _:
                 file = BASE_DIR.joinpath(route.path[1:])
                 if file.exists():
@@ -53,10 +58,20 @@ class TheBestFastApp(BaseHTTPRequestHandler):
         if mt:
             self.send_header('Content-type', mt[0])
         else:
-            self.send_header('Content-type', 'text/html')
+            self.send_header('Content-type', 'text/plain')
         self.end_headers()
         with open(filename, 'rb') as fd:
             self.wfile.write(fd.read())
+
+    def render_template(self, filename):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        with open('storage/blog.json', 'rb') as fd:
+            blogs = json.load(fd)
+        template = env.get_template(filename)
+        html = template.render(title="Our Blog", blogs=blogs)
+        self.wfile.write(html.encode())
 
 
 def write_data_to_json(json_data):

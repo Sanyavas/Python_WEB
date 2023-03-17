@@ -8,6 +8,8 @@ packages = [{include = "homework_web"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+aiohttp = "^3.8.4"
+aiopath = "^0.6.11"
 
 
 [build-system]
