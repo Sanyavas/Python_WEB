@@ -1,0 +1,54 @@
+
+2023-03-20 17:40:11,248 [INFO] - __main__ -      distribute:80 - log['EXCHANGE'] day, Carl Kraeger
+2023-03-20 17:40:14,523 [INFO] - __main__ -      distribute:93 - log['EXCHANGE', '2', 'USD', 'PLN'] days, Carl Kraeger
+2023-03-20 17:44:09,965 [INFO] - __main__ -      distribute:80 - log['EXCHANGE'] day, Amanda Green
+2023-03-20 17:45:06,311 [INFO] - __main__ -      distribute:80 - log['EXCHANGE'] day, Donald Boyle
+2023-03-20 17:56:36,838 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Ruth Horst
+2023-03-20 17:58:06,589 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, William Scherman
+2023-03-20 17:58:36,763 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Kathleen Ojeda
+2023-03-20 17:58:46,843 [INFO] - __main__ -      distribute:87 - log['EXCHANGE', '2'] days, Kathleen Ojeda
+2023-03-20 18:02:24,823 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Mary Fortin
+2023-03-20 18:02:42,649 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Mary Fortin
+2023-03-20 18:04:14,026 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Ryan Crowley
+2023-03-20 18:04:14,268 [INFO] - __main__ -      distribute:83 - log['EXCHANGE'] day, Ryan Crowley
+2023-03-20 18:04:58,322 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Lonnie Vail
+2023-03-20 18:58:29,970 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Richard Oktavec
+2023-03-20 19:00:23,542 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Mark Burnett
+2023-03-20 19:00:45,659 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Mark Burnett
+2023-03-20 19:02:03,732 [INFO] - __main__ -      distribute:81 - log['EXCHANGE'] day, Keisha Porter
+2023-03-20 19:16:51,538 [INFO] - __main__ -      distribute:83 - log['EXCHANGE'] day, Clarence Brown
+2023-03-20 19:18:40,401 [INFO] - __main__ -      distribute:83 - log['EXCHANGE'] day, Jeanne Dell
+2023-03-20 19:19:02,440 [INFO] - __main__ -      distribute:96 - log['EXCHANGE', '2', 'USD', 'PLN'] days, Jeanne Dell
+2023-03-20 19:20:58,833 [INFO] - __main__ -      distribute:83 - log['EXCHANGE'] day, Cherie Oakley
+2023-03-20 19:21:02,267 [INFO] - __main__ -      distribute:96 - log['EXCHANGE', '2', 'USD', 'PLN'] days, Cherie Oakley
+2023-03-20 19:23:38,237 [INFO] - __main__ -      distribute:96 - log['EXCHANGE', '2', 'USD', 'PLN'], Kathy Watson
+2023-03-20 19:24:45,037 [INFO] - __main__ -      distribute:89 - log['EXCHANGE', 'G'], Kathy Watson
+2023-03-20 19:24:45,038 [ERROR] - __main__ -    get_exchange:44 - AttributeError: Entered G
+2023-03-20 19:24:57,269 [INFO] - __main__ -      distribute:89 - log['EXCHANGE', '33'], Kathy Watson
+2023-03-20 19:24:57,270 [ERROR] - __main__ -    get_exchange:44 - AttributeError: Entered 33
+2023-03-20 22:31:42,989 [INFO] - __main__ -      distribute:83 - log['EXCHANGE'], Barbara Kline
+2023-03-20 22:31:51,700 [INFO] - __main__ -      distribute:89 - log['EXCHANGE', '2'], Barbara Kline
+2023-03-20 22:32:17,491 [INFO] - __main__ -      distribute:96 - log['EXCHANGE', '3', 'USD', 'PLN'], Barbara Kline
+2023-03-20 22:39:58,037 [INFO] - __main__ -      distribute:89 - log['EXCHANGE'], James Mcneill
+2023-03-20 22:40:01,495 [INFO] - __main__ -      distribute:89 - log['EXCHANGE', '2'], James Mcneill
+2023-03-20 22:40:22,714 [INFO] - __main__ -      distribute:89 - log['EXCHANGE', '2', 'USD', 'PLN'], Stephen Carr
+2023-03-20 22:55:59,445 [INFO] - __main__ -      distribute:96 - log['EXCHANGE'], Willie Alt
+2023-03-20 22:56:31,006 [INFO] - __main__ -      distribute:96 - log['EXCHANGE'], Tim Holmes
+2023-03-20 22:57:44,952 [INFO] - __main__ -      distribute:96 - log['EXCHANGE'], Raymond Hansen
+2023-03-20 22:58:14,249 [INFO] - __main__ -      distribute:96 - log['EXCHANGE'], George Tresvant
+2023-03-20 22:58:14,457 [ERROR] - __main__ -    get_exchange:54 - TypeError object NoneType can't be used in 'await' expression  valuta ['USD', 'EUR']
+2023-03-20 22:58:51,213 [INFO] - __main__ -      distribute:96 - log['EXCHANGE'], James Bergeron
+2023-03-20 23:02:13,907 [INFO] - __main__ -      distribute:96 - log['EXCHANGE'], Mohammed Cifelli
+2023-03-20 23:12:26,336 [INFO] - __main__ -      distribute:96 - log['EXCHANGE'], Florence Mclaughlin
+2023-03-20 23:13:11,807 [INFO] - __main__ -      distribute:96 - log['EXCHANGE'], Eric Judd
+2023-03-20 23:19:01,239 [INFO] - __main__ -      distribute:99 - log['EXCHANGE'], Kenneth James
+2023-03-20 23:20:18,644 [INFO] - __main__ -      distribute:99 - log['EXCHANGE'], Sandra Mcneal
+2023-03-20 23:21:06,872 [INFO] - __main__ -      distribute:99 - log['EXCHANGE'], Jerry Potter
+2023-03-20 23:22:04,854 [INFO] - __main__ -      distribute:99 - log['EXCHANGE'], Jerry Potter
+2023-03-20 23:22:33,132 [INFO] - __main__ -      distribute:99 - log['EXCHANGE'], Stephanie Alvarez
+2023-03-20 23:24:59,193 [INFO] - __main__ -      distribute:100 - log['EXCHANGE'], Paul Jasper
+2023-03-20 23:27:16,300 [INFO] - __main__ -      distribute:91 - log['EXCHANGE'], Elenor Winn
+2023-03-20 23:28:57,842 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN'], Elenor Winn
+2023-03-20 23:29:18,018 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN'], Nancy Mcgibney
+2023-03-20 23:30:34,556 [INFO] - __main__ -      distribute:91 - log['EXCHANGE'], Mary Placha
+2023-03-20 23:30:39,526 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN'], Mary Placha

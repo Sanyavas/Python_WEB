@@ -1,33 +1,25 @@
-"""
-Функція user_digit() приймає та перевіряє введене число, ф-я main() перетворює дати в строку та закидує дати у список
-"""
-
 from datetime import date, timedelta
 
 
-def user_digit(day):
+def user_digit(user_input):
+    """Перевіряє коректність вводу числа"""
 
-    if not day.isdigit() or int(day) < 1:
-        print(f"Введіть цифру від 1 до 10")
-
-    elif int(day) > 10:
-        print(f"Я вивожу курс валют за останні 10 днів! ")
-
+    if not user_input.isdigit() or int(user_input) < 1:
+        print(f"Entered {user_input} Enter digit: 1-10")
+    elif int(user_input) > 10:
+        print(f"Entered {user_input} Max 10 days! ")
     else:
-        return day
+        return user_input
 
 
 def main(day):
-    a = []
+    """Вертає список дат в строковому форматі"""
+
+    list_dates = []
     now_date = date.today()
     cor_day = user_digit(day)
     for i in range(int(cor_day)):
         interval = timedelta(days=i)
         st = (now_date - interval).strftime('%d.%m.%Y')
-        a.append(st)
-
-    return a
-
-
-if __name__ == '__main__':
-    print(main())
+        list_dates.append(st)
+    return list_dates

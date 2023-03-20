@@ -7,7 +7,7 @@ from timing import async_timed
 import aiohttp
 
 URL = 'https://api.privatbank.ua/p24api/exchange_rates?json&date='
-VALUTA = ("USD", "EUR", "PLN")
+# VALUTA = ("USD", "EUR", "PLN")
 
 
 async def request(url: str):
@@ -23,37 +23,35 @@ async def request(url: str):
             print(f'Connection error: {url}', str(err))
 
 
-def parser(info_bank, valuta):
+def get_exchange(info_bank, valuta):
     currencies = info_bank['exchangeRate']
     value = dict()
     s = {info_bank['date']: value}
     for val in valuta:
         exc = list(filter(lambda el: el["currency"] == val, currencies))
         if exc:
-            value.update({exc[0]['currency']: {"sale": exc[0]['saleRateNB'], "purchase": exc[0]['purchaseRateNB']}})
+            value.update({exc[0]['currency']: {"sale": exc[0]['saleRate'], "purchase": exc[0]['purchaseRate']}})
         else:
             value.update({val: "Not found"})
     return s
 
 
 @async_timed()
-async def main():
+async def main(digit, valuta):
     try:
-        digit = sys.argv[1]
+        # digit = sys.argv[1]
         list_date = dates(digit)
         ex_rate = []
         for date in list_date:
             urls = URL + date
             result = await request(urls)
             if result:
-                ex_rate.append(parser(result, VALUTA))
+                ex_rate.append(get_exchange(result, valuta))
             else:
                 return f'Not found'
         return ex_rate
     except IndexError as err:
         return f'IndexError {err}'
-    except KeyboardInterrupt as err:
-        return f'KeyboardInterrupt {err}'
     except TypeError as err:
         return f'TypeError {err}'
 
