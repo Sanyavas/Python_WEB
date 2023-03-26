@@ -20,19 +20,23 @@ if __name__ == '__main__':
     x = PrettyTable()
     while True:
         try:
-            task = int(input("Виберіть номер запиту: "))
+            task = int(input(f"\nВиберіть номер запиту: "))
             if task == 0:
                 sys.exit()
             if task == 33:
                 print(help_message())
                 continue
             result = query_sql(f"requests/request_{task}.sql")
-            for i in result:
-                x.field_names = [str(num) for num in range(1, len(i) + 1)]
-                x.align = "l"
-                x.add_row(i)
-            print(x)
-            x = PrettyTable()
+            if result:
+                for i in result:
+                    x.field_names = [str(num) for num in range(1, len(i) + 1)]
+                    x.align = "l"
+                    x.add_row(i)
+                print(x)
+                x = PrettyTable()
+            else:
+                print(f'_____ NO DATA ______')
+
         except TypeError as err:
             print(f'[ERROR] {err}')
         except FileNotFoundError as err:
