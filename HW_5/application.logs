@@ -52,3 +52,32 @@
 2023-03-20 23:29:18,018 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN'], Nancy Mcgibney
 2023-03-20 23:30:34,556 [INFO] - __main__ -      distribute:91 - log['EXCHANGE'], Mary Placha
 2023-03-20 23:30:39,526 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN'], Mary Placha
+2023-03-21 15:09:18,842 [INFO] - __main__ -      distribute:91 - log['EXCHANGE'], Lillian Adams
+2023-03-21 15:09:23,605 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2'], Lillian Adams
+2023-03-21 15:09:33,831 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2'], Lillian Adams
+2023-03-21 15:10:34,113 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2'], Lillian Adams
+2023-03-21 15:17:11,466 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN'], Linda Diem
+2023-03-21 15:17:23,704 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'EUR'], Linda Diem
+2023-03-21 15:17:29,981 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2'], Linda Diem
+2023-03-21 15:17:56,185 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '4', 'USD', 'PLN'], Linda Diem
+2023-03-21 15:18:20,692 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN'], Spencer Fowler
+2023-03-21 15:18:54,217 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'EUR'], Linda Diem
+2023-03-21 15:19:11,820 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN'], Spencer Fowler
+2023-03-21 15:21:44,392 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2'], Spencer Fowler
+2023-03-21 15:21:57,111 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'EUR'], Spencer Fowler
+2023-03-21 15:25:21,623 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '3', 'USD', 'PLN'], Linda Diem
+2023-03-21 15:38:16,221 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2'], Ruth Renfro
+2023-03-21 15:38:21,755 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2'], Janette Fuller
+2023-03-21 15:38:57,233 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '2', 'USD', 'PLN', 'EUR'], Janette Fuller
+2023-03-22 13:29:07,404 [INFO] - __main__ -      distribute:91 - log['EXCHANGE'], Harold Gosselin
+2023-03-22 13:29:30,223 [INFO] - __main__ -      distribute:91 - log['EXCHANGE', '5', 'USD', 'PLN', 'EUR'], Harold Gosselin
+2023-03-22 15:38:12,676 [INFO] - __main__ -      distribute:92 - log['EXCHANGE', '2', 'USD', 'PLN'], Felicia Adams
+2023-03-22 15:40:25,461 [INFO] - __main__ -      distribute:93 - log['EXCHANGE', '2', 'USD', 'PLN'], Javier Frey
+2023-03-22 15:45:24,204 [INFO] - __main__ -      distribute:95 - log['EXCHANGE', '2', 'USD', 'PLN'], Arthur Richardson
+2023-03-22 15:46:26,373 [INFO] - __main__ -      distribute:95 - log['EXCHANGE', '2', 'USD', 'PLN'], Gary Tenney
+2023-03-22 15:50:02,104 [INFO] - __main__ -      distribute:96 - log['EXCHANGE', '2', 'USD', 'PLN'], Loretta Limoli
+2023-03-22 15:51:30,113 [INFO] - __main__ -      distribute:97 - log['EXCHANGE', '2'], Lillian Kelley
+2023-03-22 15:52:12,010 [INFO] - __main__ -      distribute:97 - log['EXCHANGE', '2'], Melanie Gibson
+2023-03-22 15:53:12,693 [INFO] - __main__ -      distribute:97 - log['EXCHANGE', '2'], Carolyn Ware
+2023-03-22 15:59:11,055 [INFO] - __main__ -      distribute:97 - log['EXCHANGE', '2'], Jeffery Miyasato
+2023-03-22 16:00:32,897 [INFO] - __main__ -      distribute:97 - log['EXCHANGE', '2'], Norma Berger

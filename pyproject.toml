@@ -10,6 +10,11 @@ packages = [{include = "homework_web"}]
 python = "^3.10"
 aiohttp = "^3.8.4"
 aiopath = "^0.6.11"
+websockets = "^10.4"
+names = "^0.3.0"
+prettytable = "^3.6.0"
+psycopg2 = "^2.9.5"
+faker = "^18.3.0"
 
 
 [build-system]

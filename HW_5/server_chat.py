@@ -5,7 +5,6 @@ from datetime import datetime
 from exchange_rate import main as main_exchange
 from logger import get_logger
 
-
 import aiohttp
 import names
 from prettytable import PrettyTable
@@ -31,7 +30,9 @@ async def request(url: str):
 
 
 async def get_exchange(dig, valuta):
-
+    x = PrettyTable()
+    x.field_names = ['date', 'valuta', 'Sale', 'Buy']
+    x.align = 'l'
     try:
         s = await main_exchange(dig, valuta)
         list_rate = []
@@ -39,8 +40,11 @@ async def get_exchange(dig, valuta):
             for date, value in i.items():
                 list_rate.append(f'<date> {date} ')
                 for key, val in value.items():
+                    x.add_row([str(date), key, val['sale'], val['purchase']])
+
                     list_rate.append(f"{key} Sale: {val['sale']}  Buy: {val['purchase']}" + ', ')
 
+        print(x)
         return list_rate
     except AttributeError:
         logger.error(f"AttributeError: Entered {dig}")
