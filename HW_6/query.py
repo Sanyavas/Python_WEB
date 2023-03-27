@@ -1,5 +1,5 @@
 import sys
-from prettytable import PrettyTable
+from prettytable import from_db_cursor
 
 from connection import create_connection
 from aux_functions import help_message
@@ -12,12 +12,12 @@ def query_sql(file):
     with create_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(sql)
-        return cursor.fetchall()
+        # return cursor.fetchall()
+        return from_db_cursor(cursor)
 
 
-if __name__ == '__main__':
+def main():
     print(help_message())
-    x = PrettyTable()
     while True:
         try:
             task = int(input(f"\nВиберіть номер запиту: "))
@@ -27,15 +27,7 @@ if __name__ == '__main__':
                 print(help_message())
                 continue
             result = query_sql(f"requests/request_{task}.sql")
-            if result:
-                for i in result:
-                    x.field_names = [str(num) for num in range(1, len(i) + 1)]
-                    x.align = "l"
-                    x.add_row(i)
-                print(x)
-                x = PrettyTable()
-            else:
-                print(f'_____ NO DATA ______')
+            print(result)
 
         except TypeError as err:
             print(f'[ERROR] {err}')
@@ -43,4 +35,8 @@ if __name__ == '__main__':
             print(f'[ERROR] {err}')
         except ValueError as err:
             print(f'[ERROR] {err}')
+
+
+if __name__ == '__main__':
+    main()
 
