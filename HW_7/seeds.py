@@ -68,7 +68,7 @@ def fill_data():
         discipline_ids = session.scalars(select(Discipline.id)).all()
         student_ids = session.scalars(select(Student.id)).all()
 
-        for d in d_range:  # пройдемось по кожній даті
+        for d in d_range:  # проходимо по кожній даті
             random_id_discipline = choice(discipline_ids)
             random_ids_student = [choice(student_ids) for _ in range(5)]
             # проходимося за списком "везучих" студентів, додаємо їх до списку
