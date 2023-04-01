@@ -20,10 +20,12 @@ def fill_data():
         "HTML/CSS",
         "Python WEB",
         "English",
-        "Python for Data Science"
+        "Python for Data Science",
+        "DataBase",
+        "Sapromat"
     ]
 
-    groups = ["PG-8", "PG-9", "PG-10"]
+    groups = ["GTA-3", "GTA-4", "GTA-5"]
 
     fake = Faker('uk-UA')
     number_of_teachers = 5
@@ -74,7 +76,7 @@ def fill_data():
             # проходимося за списком "везучих" студентів, додаємо їх до списку
             # та генеруємо оцінку
             for student_id in random_ids_student:
-                grade = Grade(grade=randint(1, 12), date_of=d, student_id=student_id,
+                grade = Grade(grade=randint(4, 12), date_of=d, student_id=student_id,
                               discipline_id=random_id_discipline)
                 session.add(grade)
         session.commit()
