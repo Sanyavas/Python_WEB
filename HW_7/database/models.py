@@ -8,8 +8,9 @@ class Teacher(Base):
     __tablename__ = 'teachers'
     id = Column(Integer, primary_key=True)
     fullname = Column(String(120), nullable=False)
-    phone = Column(String(120), nullable=False)
-    address = Column(String(120), nullable=False)
+    phone = Column(String(120), nullable=True)
+    email = Column(String(120), nullable=True)
+    address = Column(String(120), nullable=True)
 
 
 class Group(Base):
@@ -22,8 +23,8 @@ class Student(Base):
     __tablename__ = 'students'
     id = Column(Integer, primary_key=True)
     fullname = Column(String(120), nullable=False)
-    email = Column(String(120), nullable=False)
-    phone = Column(String(120), nullable=False)
+    email = Column(String(120), nullable=True)
+    phone = Column(String(120), nullable=True)
     group_id = Column('group_id', ForeignKey('groups.id', ondelete='CASCADE'))
     group = relationship('Group', backref='students')
 

@@ -33,7 +33,8 @@ GROUP BY s.id, d.id
 ORDER BY avg_grade DESC
 LIMIT 1;
     """
-    result = session.query(Discipline.name, Student.fullname, func.round(func.avg(Grade.grade), 2).label("avg_grade")) \
+    result = session.query(Discipline.name, Student.fullname,
+                           func.round(func.avg(Grade.grade), 2).label("avg_grade")) \
         .select_from(Grade).join(Student).join(Discipline).filter(Discipline.id == 5) \
         .group_by(Student.id).group_by(Discipline.id).order_by(desc("avg_grade")).limit(5).first()
     return result
@@ -128,7 +129,8 @@ left join teachers t on t.id = d.teacher_id
 WHERE t.id = 5
 GROUP BY t.id, d.id;
     """
-    result = session.query(Teacher.fullname, Discipline.name, func.round(func.avg(Grade.grade), 2).label("avg_grade")) \
+    result = session.query(Teacher.fullname, Discipline.name,
+                           func.round(func.avg(Grade.grade), 2).label("avg_grade")) \
         .select_from(Grade).join(Discipline).join(Teacher).filter(Teacher.id == 4) \
         .group_by(Teacher.id).group_by(Discipline.id).all()
     return result
@@ -213,9 +215,33 @@ and g.date_of =(
     result = session.query(Group.name, Discipline.name, Grade.grade, Student.fullname, Grade.date_of) \
         .select_from(Grade).join(Student).join(Group).join(Discipline) \
         .filter(and_(Grade.discipline_id == 2, Student.group_id == 3, Grade.date_of == subquery)).all()
-    print(result)
     return result
 
 
-# if __name__ == '__main__':
-#     print(select_12())
+def main(num):
+    if num == "1":
+        print(select_1())
+    elif num == "2":
+        print(select_2())
+    elif num == "3":
+        print(select_3())
+    elif num == "4":
+        print(select_4())
+    elif num == "5":
+        print(select_5())
+    elif num == "6":
+        print(select_6())
+    elif num == "7":
+        print(select_7())
+    elif num == "8":
+        print(select_8())
+    elif num == "9":
+        print(select_9())
+    elif num == "10":
+        print(select_10())
+    elif num == "11":
+        print(select_11())
+    elif num == "12":
+        print(select_12())
+    else:
+        print(f'Not found Query!!')

@@ -36,7 +36,9 @@ def fill_data():
 
             teacher = Teacher(fullname=fake.name(),
                               phone=normalize_phone(fake.phone_number()),
+                              email=fake.email(),
                               address=fake.address())
+
             session.add(teacher)
         session.commit()
 
