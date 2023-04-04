@@ -45,7 +45,7 @@ def update_data(my_model, my_argv: dict):
     if upd:
         if my_model == Group:
             upd.name = my_argv.get("name") if my_argv.get("name") else my_model.name
-            upd.update(upd.name)
+            upd.update({"name": upd.name})
 
         if my_model == Teacher:
             upd.fullname = my_argv.get("name") if my_argv.get("name") else my_model.fullname
@@ -53,7 +53,7 @@ def update_data(my_model, my_argv: dict):
             upd.email = my_argv.get("email") if my_argv.get("email") else my_model.email
             upd.address = my_argv.get("address") if my_argv.get("address") else my_model.address
             upd.update({"fullname": upd.fullname,
-                        "phone": normalize_phone(upd.phone),
+                        "phone": upd.phone,
                         "email": upd.email,
                         "address": upd.address})
 
@@ -68,7 +68,7 @@ def update_data(my_model, my_argv: dict):
             upd.email = my_argv.get("email") if my_argv.get("email") else my_model.email
             upd.group_id = my_argv.get("group_id") if my_argv.get("group_id") else my_model.group_id
             upd.update({"fullname": upd.fullname,
-                        "phone": normalize_phone(upd.phone),
+                        "phone": upd.phone,
                         "email": upd.email,
                         "group_id": upd.group_id})
 
