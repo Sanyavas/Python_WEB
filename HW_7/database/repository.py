@@ -1,5 +1,3 @@
-
-
 from sqlalchemy import and_, select
 
 from aux_functions import normalize_phone

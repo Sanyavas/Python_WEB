@@ -2,6 +2,7 @@ import argparse
 
 from prettytable import PrettyTable
 
+from aux_functions import help_message
 from my_select import main as query_main
 from database.repository import create_data, read_data, update_data, delete_data
 from database.models import Teacher, Student, Discipline, Group, Grade
@@ -52,8 +53,8 @@ def main():
 
         match action:
             case 'create':
-                data = create_data(my_model, my_arg)
-                print(data)
+                create_data(my_model, my_arg)
+                print(f'Create: {my_arg["name"]}')
             case 'read':
                 a = read_data(my_model)
                 x = PrettyTable()
@@ -61,12 +62,11 @@ def main():
                     x.add_row(i)
                 print(x)
             case 'update':
-                upd = update_data(my_model, my_arg)
-                print(my_arg)
-                print(f'Update: {model}_id_{upd.id}')
+                update_data(my_model, my_arg)
+                print(f'Update: id_{my_arg["id"]}')
             case 'delete':
-                dd = delete_data(my_model, my_arg)
-                print(f"Remove {dd.id}")
+                delete_data(my_model, my_arg)
+                print(f"Remove id_{my_arg['id']}")
 
         if query:
             query_main(query)
