@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "hw-8"
+version = "0.1.0"
+description = ""
+authors = ["Sanyavas <vasilinaoleksandr@gmail.com>"]
+readme = "README.md"
+packages = [{include = "hw_8"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pymongo = "^4.3.3"
+mongoengine = "^0.27.0"
+pika = "^1.3.1"
+faker = "^18.4.0"
+redis = "^4.5.4"
+redis-lru = "^0.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
