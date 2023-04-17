@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "hw-9"
+version = "0.1.0"
+description = ""
+authors = ["Sanyavas <vasilinaoleksandr@gmail.com>"]
+readme = "README.md"
+packages = [{include = "hw_9"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+lxml = "^4.9.2"
+requests = "^2.28.2"
+beautifulsoup4 = "^4.12.2"
+sqlalchemy = "^2.0.9"
+scrapy = "^2.8.0"
+mongoengine = "^0.27.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
