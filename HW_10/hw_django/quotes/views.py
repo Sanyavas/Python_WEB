@@ -18,4 +18,4 @@ def main(request):
 def author(request):
     db = get_mongodb()
     authors = db.authors.find()
-    print(authors)
+    return render(request, "quotes/author.html", context={'author': authors})
