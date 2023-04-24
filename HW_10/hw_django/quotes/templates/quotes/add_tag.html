@@ -1,4 +1,4 @@
-{% extends "quotes/base.html" %}
+ {% extends "quotes/base.html" %}
 
 {% block content %}
 
@@ -8,19 +8,18 @@
         <label> Author:
             {{ form.author }}
         </label>
-        <span>{{ form.errors.author }}</span>
+        <span>{{ form.errors.name }}</span>
     </div>
     <div style="padding: 10px">
         <label> Quote:
             {{ form.quote }}
         </label>
-        <span>{{ form.errors.quote }}</span>
+        <span>{{ form.errors.description }}</span>
     </div>
     <div style="padding: 10px">
         <label> Tags:
             {{ form.tags }}
         </label>
-        <span>{{ form.errors.tags }}</span>
     </div>
     <div class="grid">
         <button type="submit">Submit</button>

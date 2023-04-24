@@ -2,8 +2,8 @@
 {% load extract %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8">
+<div class="row mb-3">
+    <div class="col-md-8 themed-gris-col">
         {% for quote in quotes %}
         <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
             <span class="text" itemprop="text">{{quote.quote}}</span>
@@ -13,7 +13,7 @@
             <div class="tags">
                 Tags:
                 {% for tag in quote.tags.all %}
-                <a class="tag" href="#">{{tag.name}}</a>
+                <a class="tag" href="{% url 'quotes:find_by_tag' tag.id %}">{{tag.name}}</a>
                 {% endfor %}
             </div>
         </div>
@@ -32,6 +32,15 @@
                     {% endif %}
             </ul>
         </nav>
+    </div>
+    <div class="col-md-4 themed-grid-col">
+        <h2>Top 10 tags</h2>
+        {% for tag in top_tags %}
+            <div class="tags">
+        <a class="tag" href="#">{{tag}}</a>
+
+            </div>
+        {% endfor %}
     </div>
 
 </div>
