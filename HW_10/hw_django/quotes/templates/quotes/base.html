@@ -27,7 +27,7 @@
                 <a href="/users/logout" class="btn btn-light">Logout</a>
                 <a href="{% url 'quotes:add_quote' %}" class="btn btn-info">Add Quote</a>
                 <a href="{% url 'quotes:add_author' %}" class="btn btn-info">Add Author</a>
-                <a href="#" class="btn btn-info">Add Tag</a>
+                <a href="{% url 'quotes:add_tag' %}" class="btn btn-info">Add Tag</a>
                 {% else %}
                 <a href="/users/signup" class="btn btn-light">Signup</a>
                 <a href="/users/signin" class="btn btn-light">Login</a>

@@ -12,6 +12,7 @@ django = "^4.2"
 psycopg2 = "^2.9.6"
 pillow = "^9.5.0"
 pymongo = "^4.3.3"
+icrawler = "^0.6.6"
 
 
 [build-system]

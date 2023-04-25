@@ -1,11 +1,15 @@
 {% extends 'quotes/base.html' %}
-{% load extract %}
 
 {% block content %}
 <div class="row mb-3">
     <div class="col-md-8 themed-gris-col">
         {% for quote in quotes %}
         <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
+            <a class="leftAlignedImage" href="{% url 'quotes:author_about' quote.author.id %}">
+                <img alt="{{quote.author.fullname}}"
+                     src="https://www.google.com/search?q=Albert+Einstein&ijn=0&start=0&tbs=&tbm=isch"
+                     width="50" height="60">
+            </a>
             <span class="text" itemprop="text">{{quote.quote}}</span>
             <span>by <small class="author" itemprop="author">{{quote.author.fullname}}</small>
             <a href="{% url 'quotes:author_about' quote.author.id %}">(about)</a>
@@ -34,13 +38,13 @@
         </nav>
     </div>
     <div class="col-md-4 themed-grid-col">
-        <h2>Top 10 tags</h2>
-        {% for tag in top_tags %}
-            <div class="tags">
-        <a class="tag" href="#">{{tag}}</a>
-
-            </div>
+        <h2>Top 10 Tags</h2>
+        {% for tag in top_ten_tags %}
+        <div class="tags">
+            <a class="tag" href="#">{{tag}}</a>
+        </div>
         {% endfor %}
+
     </div>
 
 </div>
