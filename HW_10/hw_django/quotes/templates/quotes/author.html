@@ -1,6 +1,10 @@
 {% extends "quotes/base.html" %}
 {% block content %}
 <div class="author-details">
+    <a class="leftAlignedImage">
+        <img src="{{author.picture}}"
+             width="100" height="132">
+    </a>
     <h3 class="author-title">{{author.fullname}}</h3>
     <p>
         <strong>Born:</strong> <span class="author-born-date">{{author.born_date}}</span>

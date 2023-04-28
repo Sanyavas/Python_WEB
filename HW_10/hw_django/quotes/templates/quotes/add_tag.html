@@ -2,17 +2,19 @@
 
 {% block content %}
 
+ <h2 class="d-grid gap-2 col-5 mx-auto">Add Tag:</h2>
+
 <form method="POST" action="{% url 'quotes:add_tag' %}">
     {% csrf_token %}
-    <div style="padding: 10px">
-        <label> Tags:
+    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
+        <label class="d-grid gap-2 col-6 mx-auto" > Tags:
             {{ form.name }}
         </label>
         <span>{{ form.errors.name }}</span>
     </div>
-    <div class="grid">
-        <button type="submit">Submit</button>
-        <button type="reset" class="secondary">Reset</button>
+    <div class="d-grid gap-2 col-5 mx-auto">
+        <button type="submit" class="btn btn-primary btn">Submit</button>
+        <button type="reset" class="btn btn-secondary btn">Reset</button>
     </div>
 </form>
 {% endblock %}

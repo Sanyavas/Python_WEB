@@ -1,9 +1,13 @@
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.shortcuts import render, redirect
-from .models import Author, Quote, Tag
-from .utils import get_mongodb
+
+
+from .models import Author, Quote
 from .forms import QuoteForm, AuthorForm, TagForm
+# import os
+#
+# from ..utils.main_scrapy import custom_scrapy
 
 
 def main(request):
@@ -15,13 +19,10 @@ def main(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    top_tags = Quote.objects.values('tags__name') \
+    top_tags = Quote.objects.values('tags__name', "tags__id") \
                    .annotate(quote_count=Count('tags__name')) \
                    .order_by('-quote_count')[:10]
-    tag_name = []
-    for tag in top_tags:
-        tag_name.append(tag['tags__name'])
-    return render(request, "quotes/index.html", context={'quotes': page_obj, "top_ten_tags": tag_name})
+    return render(request, "quotes/index.html", context={'quotes': page_obj, "top_tags": top_tags})
 
 
 def author_about(request, _id):
@@ -73,14 +74,19 @@ def find_by_tag(request, _id):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    top_tags = Quote.objects.values('tags__name') \
+    top_tags = Quote.objects.values('tags__name', "tags__id") \
                    .annotate(quote_count=Count('tags__name')) \
                    .order_by('-quote_count')[:10]
-    tag_name = []
-    for tag in top_tags:
-        tag_name.append(tag['tags__name'])
+    # for tag in top_tags:
+    #     tag_name = tag['tag__name']
+    #     quote_count = tag['quote_count']
+    #     print(f"Tag name: {tag_name}, Quote count: {quote_count}")
 
     return render(request, "quotes/index.html", context={'quotes': page_obj,
-                                                         "top_ten_tags": tag_name})
+                                                         "top_tags": top_tags})
 
 
+def run_scrapy(request):
+    # custom_scrapy()
+    print('Scrapy running')
+    return render(request, "quotes/index.html", context={})

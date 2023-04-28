@@ -1,63 +1,29 @@
-.quote {
-    padding: 10px;
-    margin-bottom: 30px;
-    border: 1px solid #333333;
-    border-radius: 5px;
-    box-shadow: 2px 2px 3px #333333;
+a {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    color: #ad998b;
+    text-decoration: none;
 }
 
-.quote span.text {
-    display: block;
-    margin-bottom: 5px;
-    font-size: large;
-    font-style: italic;
-}
-
-.quote small.author {
+.quoteText .authorOrTitle {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
     font-weight: bold;
-    color: #3677E8;
+    color: #333;
 }
 
-.quote .tags {
-    margin-top: 10px;
+.quoteText {
+    font-family: "Merriweather", "Georgia", serif;
+    font-size: 14px;
+    padding: 0px 5px 10px 0px;
+    line-height: 21px;
 }
 
-.tag {
-    padding: 2px 5px;
-    border-radius: 5px;
-    color: white;
-    font-size: small;
-    background-color: #7CA3E6;
+H1, .h2Container H2, .pageHeader h2 {
+    padding: 0px 0px 2px 0px;
+    font-size: 20px;
+    font-family: "Merriweather", Georgia, "Times New Roman", serif;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #382110;
+    line-height: 24px;
 }
-
-.pager {
-    font-family: "Raleway","Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-
-.pager li {
-    display: inline;
-}
-
-.pager {
-    padding-left: 0;
-    margin: 22px 0;
-    list-style: none;
-    text-align: center;
-}
-
-.pager .next>a, .pager .next>span {
-    float: right;
-}
-
-.pager li>a, .pager li>span {
-    display: inline-block;
-    padding: 5px 14px;
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    border-radius: 15px;
-}
-
-.disabled {
-    color: #333333;
-}
-

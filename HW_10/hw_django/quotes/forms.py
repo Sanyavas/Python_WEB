@@ -19,10 +19,11 @@ class AuthorForm(ModelForm):
     born_date = CharField(max_length=50, widget=TextInput())
     born_location = CharField(max_length=150, widget=TextInput())
     description = CharField(widget=TextInput())
+    picture = CharField(max_length=300, widget=TextInput())
 
     class Meta:
         model = Author
-        fields = ["fullname", "born_date", "born_location", "description"]
+        fields = ["fullname", "born_date", "born_location", "description", "picture"]
 
 
 class TagForm(ModelForm):

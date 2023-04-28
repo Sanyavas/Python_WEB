@@ -7,7 +7,7 @@ client = MongoClient("mongodb://localhost")
 
 db = client.hw
 
-with open("quotes.json", "r", encoding="utf-8") as fd:
+with open("json_fs/quotes.json", "r", encoding="utf-8") as fd:
     quotes = json.load(fd)
 
 for quote in quotes:

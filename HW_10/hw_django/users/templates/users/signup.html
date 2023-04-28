@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>SignUp</h2>
+<h2 class="d-grid gap-2 col-6 mx-auto">SignUp:</h2>
 
 {% if form.errors %}
 <span class="alert alert-danger" role="alert">{{ form.non_field_errors }}</span>
@@ -11,31 +11,32 @@
 <form method="post">
     {% csrf_token %}
 
-    <div class="row mb-4">
+    <div class="d-grid gap-2 col-6 mx-auto">
         <label>Username:</label>
         {{ form.username }}
         <span>{{ form.errors.username }}</span>
     </div>
-    <div class="row mb-3">
+    <div class="d-grid gap-2 col-6 mx-auto">
         <label>Email:</label>
         {{ form.email }}
         <span>{{ form.errors.email }}</span>
     </div>
-    <div class="row mb-3">
+    <div class="d-grid gap-2 col-6 mx-auto">
         <label>Password:</label>
         {{ form.password1 }}
         <span>{{ form.errors.password1 }}</span>
     </div>
-    <div class="row mb-3">
+    <div class="d-grid gap-2 col-6 mx-auto">
         <label>Password:</label>
         {{ form.password2}}
         <span>{{ form.errors.password2 }}</span>
     </div>
 
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-        <button type="reset" class="btn btn-secondary btn-sm">Reset</button>
+        <button type="submit" class="btn btn-primary btn">Submit</button>
+        <button type="reset" class="btn btn-secondary btn">Reset</button>
     </div>
 </form>
 
 {% endblock %}
+

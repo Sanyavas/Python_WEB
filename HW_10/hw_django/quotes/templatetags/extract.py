@@ -2,6 +2,7 @@ from bson import ObjectId
 from django import template
 
 from ..utils import get_mongodb
+# from ...utils.main_scrapy import run_scrapy
 
 register = template.Library()
 
@@ -13,3 +14,4 @@ def get_author(id_):
 
 
 register.filter('author', get_author)
+# register.filter('run_scrapy', run_scrapy)

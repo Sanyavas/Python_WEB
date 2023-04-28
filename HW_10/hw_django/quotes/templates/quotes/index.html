@@ -1,30 +1,39 @@
 {% extends 'quotes/base.html' %}
 
 {% block content %}
-<div class="row mb-3">
+<div class="mainContent">
+    <h1><a class="quoteTitle" href="/" rel="stylesheet">Quotes of famous people</a></h1>
     <div class="col-md-8 themed-gris-col">
-        {% for quote in quotes %}
-        <div class="quote" itemscope="" itemtype="http://schema.org/CreativeWork">
-            <a class="leftAlignedImage" href="{% url 'quotes:author_about' quote.author.id %}">
-                <img alt="{{quote.author.fullname}}"
-                     src="https://www.google.com/search?q=Albert+Einstein&ijn=0&start=0&tbs=&tbm=isch"
-                     width="50" height="60">
-            </a>
-            <span class="text" itemprop="text">{{quote.quote}}</span>
-            <span>by <small class="author" itemprop="author">{{quote.author.fullname}}</small>
-            <a href="{% url 'quotes:author_about' quote.author.id %}">(about)</a>
-            </span>
-            <div class="tags">
-                Tags:
-                {% for tag in quote.tags.all %}
-                <a class="tag" href="{% url 'quotes:find_by_tag' tag.id %}">{{tag.name}}</a>
-                {% endfor %}
+        <br>
+        <div class="quotes" rel="stylesheet">
+            {% for quote in quotes %}
+            <div class="quote">
+                <a class="leftAlignedImage" href="{% url 'quotes:author_about' quote.author.id %}">
+                    <img alt="{{quote.author.fullname}}"
+                         src="{{quote.author.picture}}"
+                         width="50" height="66">
+                </a>
+                <div class="quoteText" itemprop="text">{{quote.quote}}
+                    <br>
+                    ―
+                    <span class="authorOrTitle" rel="stylesheet">
+                    <a href="{% url 'quotes:author_about' quote.author.id %}">{{quote.author.fullname}}</a>
+                    </span>
+                </div>
+                <div class="tagsQuote">
+                    tags:
+                    {% for tag in quote.tags.all %}
+                    <a class="tag" style="text-decoration: none"
+                       href="{% url 'quotes:find_by_tag' tag.id %}">{{tag.name}}</a>
+                    {% endfor %}
+                </div>
+                <hr>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
         <nav>
             <ul class="pager">
-                <li class="previous">
+                <li class="previous-center">
                     {% if quotes.has_previous %}
                     <a href="?page=1" class="btn btn-light">&laquo; first</a>
                     <a href="?page={{ quotes.previous_page_number }}" class="btn btn-light">previous</a>
@@ -37,14 +46,14 @@
             </ul>
         </nav>
     </div>
-    <div class="col-md-4 themed-grid-col">
+    <div class="col-md-4 tags-box">
         <h2>Top 10 Tags</h2>
-        {% for tag in top_ten_tags %}
-        <div class="tags">
-            <a class="tag" href="#">{{tag}}</a>
+        {% for tag in top_tags %}
+        <div class="tagsTop">
+            <a class="mb-2 tag" style="text-decoration: none"
+               href="{% url 'quotes:find_by_tag' tag.tags__id %}">{{tag.tags__name}}</a>
         </div>
         {% endfor %}
-
     </div>
 
 </div>

@@ -19,7 +19,7 @@ for author in authors:
         fullname=author['fullname'],
         born_date=author['born_date'],
         born_location=author['born_location'],
-        description=author['description']
+        description=author['description'],
     )
 
 quotes = db.quotes.find()
