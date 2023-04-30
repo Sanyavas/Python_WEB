@@ -1,13 +1,15 @@
+import sys
+
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.shortcuts import render, redirect
-
+from django.db.models import Q
 
 from .models import Author, Quote
 from .forms import QuoteForm, AuthorForm, TagForm
-# import os
-#
-# from ..utils.main_scrapy import custom_scrapy
+
+sys.path.append("..")
+from utils.scrapy_bs import spider_bs  # noqa
 
 
 def main(request):
@@ -26,9 +28,7 @@ def main(request):
 
 
 def author_about(request, _id):
-    print(_id)
     author = Author.objects.get(pk=_id)
-    print(author.fullname, type(author))
 
     return render(request, 'quotes/author.html', context={'author': author})
 
@@ -37,7 +37,7 @@ def add_quote(request):
     if request.method == "POST":
         form = QuoteForm(request.POST)
         if form.is_valid():
-            new_quote = form.save()
+            form.save()
             return redirect(to="quotes:home")
         else:
             return render(request, "quotes/add_quote.html", context={'form': QuoteForm(), "message": "Form not valid"})
@@ -48,7 +48,7 @@ def add_author(request):
     if request.method == "POST":
         form = AuthorForm(request.POST)
         if form.is_valid():
-            new_quote = form.save()
+            form.save()
             return redirect(to="quotes:home")
         else:
             return render(request, "quotes/add_author.html",
@@ -60,7 +60,7 @@ def add_tag(request):
     if request.method == "POST":
         form = TagForm(request.POST)
         if form.is_valid():
-            new_quote = form.save()
+            form.save()
             return redirect(to="quotes:home")
         else:
             return render(request, "quotes/add_tag.html", context={'form': TagForm(), "message": "Form not valid"})
@@ -86,7 +86,35 @@ def find_by_tag(request, _id):
                                                          "top_tags": top_tags})
 
 
+def search_quotes(request):
+    query = request.GET.get("q")
+    results = []
+    if query:
+        quotes = Quote.objects.filter(
+            Q(quote__icontains=query) | Q(author__fullname__icontains=query) | Q(tags__name__icontains=query))
+        for quote in quotes:
+            if quote not in results:
+                results.append(quote)
+        # paginator = Paginator(list(result), per_page)
+        # page_number = request.GET.get('page')
+        # page_obj = paginator.get_page(page_number)
+        return render(request, "quotes/search.html", context={"quotes": results, "query": query})
+    return redirect(to="quotes:home")
+
+
+def dont_work(request):
+    return render(request, "quotes/dont_work.html", context={})
+
+
+
+def test_func():
+    for i in range(10):
+        print(i)
+
+
 def run_scrapy(request):
-    # custom_scrapy()
-    print('Scrapy running')
-    return render(request, "quotes/index.html", context={})
+    print('Start parse')
+    test_func()
+    # spider_bs()
+    print('Finish running')
+    return redirect(to="quotes:home")

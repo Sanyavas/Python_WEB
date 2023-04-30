@@ -13,4 +13,6 @@ urlpatterns = [
     path('add_tag/', views.add_tag, name='add_tag'),
     path('tag/<int:_id>/', views.find_by_tag, name='find_by_tag'),
     path('', views.run_scrapy, name='run_scrapy'),
+    path('search/', views.search_quotes, name='search_quotes'),
+    path('sorry/', views.dont_work, name='dont_work'),
 ]

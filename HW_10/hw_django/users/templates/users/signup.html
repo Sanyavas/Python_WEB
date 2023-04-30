@@ -1,42 +1,45 @@
 {% extends 'quotes/base.html' %}
 
 {% block content %}
+<div class="container">
+    <h2 class="titleForm">SignUp:</h2>
+    <br>
+    {% if form.errors %}
+    <span class="alert alert-danger" role="alert">{{ form.non_field_errors }}</span>
+    {% endif %}
 
-<h2 class="d-grid gap-2 col-6 mx-auto">SignUp:</h2>
+    <form class="col-sm-6" method="POST">
+        {% csrf_token %}
 
-{% if form.errors %}
-<span class="alert alert-danger" role="alert">{{ form.non_field_errors }}</span>
-{% endif %}
-
-<form method="post">
-    {% csrf_token %}
-
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <label>Username:</label>
-        {{ form.username }}
-        <span>{{ form.errors.username }}</span>
-    </div>
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <label>Email:</label>
-        {{ form.email }}
-        <span>{{ form.errors.email }}</span>
-    </div>
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <label>Password:</label>
-        {{ form.password1 }}
-        <span>{{ form.errors.password1 }}</span>
-    </div>
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <label>Password:</label>
-        {{ form.password2}}
-        <span>{{ form.errors.password2 }}</span>
-    </div>
-
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" class="btn btn-primary btn">Submit</button>
-        <button type="reset" class="btn btn-secondary btn">Reset</button>
-    </div>
-</form>
-
+        <div>
+            <label>Username:</label>
+            {{ form.username }}
+            <span>{{ form.errors.username }}</span>
+        </div>
+        <br>
+        <div>
+            <label>Email:</label>
+            {{ form.email }}
+            <span>{{ form.errors.email }}</span>
+        </div>
+        <br>
+        <div>
+            <label>Password:</label>
+            {{ form.password1 }}
+            <span>{{ form.errors.password1 }}</span>
+        </div>
+        <br>
+        <div>
+            <label>Password:</label>
+            {{ form.password2}}
+            <span>{{ form.errors.password2 }}</span>
+        </div>
+        <br>
+        <div>
+            <button type="submit" class="btn btn-primary btn">Submit</button>
+            <button type="reset" class="btn btn-secondary btn">Reset</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
 

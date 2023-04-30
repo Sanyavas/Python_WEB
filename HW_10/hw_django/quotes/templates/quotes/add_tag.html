@@ -1,20 +1,23 @@
- {% extends "quotes/base.html" %}
+{% extends "quotes/base.html" %}
 
 {% block content %}
 
- <h2 class="d-grid gap-2 col-5 mx-auto">Add Tag:</h2>
-
-<form method="POST" action="{% url 'quotes:add_tag' %}">
-    {% csrf_token %}
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Tags:
+<div class="container">
+    <h2 class="titleForm">Add Tag:</h2>
+    <br>
+    <form class="col-sm-6" method="POST" action="{% url 'quotes:add_tag' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Tage:</label>
             {{ form.name }}
-        </label>
-        <span>{{ form.errors.name }}</span>
-    </div>
-    <div class="d-grid gap-2 col-5 mx-auto">
-        <button type="submit" class="btn btn-primary btn">Submit</button>
-        <button type="reset" class="btn btn-secondary btn">Reset</button>
-    </div>
-</form>
+            <span>{{ form.errors.name }}</span>
+        </div>
+        <br>
+        <div class="buttonForm">
+            <button type="submit" class="btn btn-primary btn">Submit</button>
+            <button type="reset" class="btn btn-secondary btn">Reset</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
+

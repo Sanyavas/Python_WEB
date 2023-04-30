@@ -1,44 +1,41 @@
 {% extends "quotes/base.html" %}
 
 {% block content %}
-
- <h2 class="d-grid gap-2 col-5 mx-auto">Add Author:</h2>
-
-<form method="POST" action="{% url 'quotes:add_author' %}">
-    {% csrf_token %}
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Fullname:
+<div class="container">
+    <h2 class="titleForm">Add Author:</h2>
+    <br>
+    <form class="col-sm-8" method="POST" action="{% url 'quotes:add_author' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Author:</label>
             {{ form.fullname }}
-        </label>
-        <span>{{ form.errors.fullname }}</span>
-    </div>
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Born Date:
+            <span>{{ form.errors.fullname }}</span>
+        </div>
+        <div class="form-group">
+            <label>Born Date:</label>
             {{ form.born_date }}
-        </label>
-        <span>{{ form.errors.born_date }}</span>
-    </div>
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Born Location:
+            <span>{{ form.errors.born_date }}</span>
+        </div>
+        <div class="form-group">
+            <label>Born Location:</label>
             {{ form.born_location }}
-        </label>
-        <span>{{ form.errors.born_location }}</span>
-    </div>
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Picture:
+            <span>{{ form.errors.born_location }}</span>
+        </div>
+        <div class="form-group">
+            <label>Picture:</label>
             {{ form.picture }}
-        </label>
-        <span>{{ form.errors.picture }}</span>
-    </div>
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Description:
+            <span>{{ form.errors.picture }}</span>
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+<!--            <textarea class="form-control" rows="3"></textarea>-->
             {{ form.description }}
-        </label>
-        <span>{{ form.errors.description }}</span>
-    </div>
-    <div class="d-grid gap-2 col-5 mx-auto">
-        <button type="submit" class="btn btn-primary btn">Submit</button>
-        <button type="reset" class="btn btn-secondary btn">Reset</button>
-    </div>
-</form>
+            <span>{{ form.errors.description }}</span>
+        </div>
+        <div class="buttonForm">
+            <button type="submit" class="btn btn-primary btn">Submit</button>
+            <button type="reset" class="btn btn-secondary btn">Reset</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

@@ -1,38 +1,41 @@
 {% extends 'quotes/base.html' %}
 
 {% block content %}
+<div class="container">
+    <h2 class="titleForm">Login:</h2>
+    <br>
+    {% if form.errors %}
+    <span class="alert alert-danger" role="alert">{{form.non_field_errors}}</span>
+    {% endif %}
 
-<h2 class="d-grid gap-2 col-6 mx-auto">Login:</h2>
+    {% if messages %}
+    <div>
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-{% if form.errors %}
-<span class="alert alert-danger" role="alert">{{form.non_field_errors}}</span>
-{% endif %}
+    <form class="col-sm-6" method="POST">
+        {% csrf_token %}
 
-{% if messages %}
-<div>
-    {% for message in messages %}
-    <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">{{ message }}</div>
-    {% endfor %}
+        <div>
+            <label>Username:</label>
+            {{form.username}}
+            <span>{{form.errors.username}}</span>
+        </div>
+        <br>
+        <div>
+            <label>Password:</label>
+            {{form.password}}
+            <span>{{form.errors.password}}</span>
+        </div>
+        <br>
+        <div>
+            <button type="submit" class="btn btn-primary btn">Submit</button>
+            <button type="reset" class="btn btn-secondary btn">Reset</button>
+        </div>
+    </form>
 </div>
-{% endif %}
-
-<form method="post">
-    {% csrf_token %}
-
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <label>Username:</label>
-        {{form.username}}
-        <span>{{form.errors.username}}</span>
-    </div>
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <label>Password:</label>
-        {{form.password}}
-        <span>{{form.errors.password}}</span>
-    </div>
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" class="btn btn-primary btn">Submit</button>
-        <button type="reset" class="btn btn-secondary btn">Reset</button>
-    </div>
-</form>
 
 {% endblock %}

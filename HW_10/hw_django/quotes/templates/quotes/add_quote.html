@@ -1,32 +1,31 @@
 {% extends "quotes/base.html" %}
 
 {% block content %}
-
-<h2 class="d-grid gap-2 col-5 mx-auto">Add Quote:</h2>
-
-<form method="POST" action="{% url 'quotes:add_quote' %}">
-    {% csrf_token %}
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Author:
-            {{ form.author }}
-        </label>
-        <span>{{ form.errors.author }}</span>
-    </div>
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Quote:
+<div class="container">
+    <h2 class="titleForm">Add Quote:</h2>
+    <br>
+    <form class="col-sm-8" method="POST" action="{% url 'quotes:add_quote' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Author:</label>
+            {{form.author}}
+            <span>{{ form.errors.author }}</span>
+        </div>
+        <div class="form-group">
+            <label>Quote:</label>
             {{ form.quote }}
-        </label>
-        <span>{{ form.errors.quote }}</span>
-    </div>
-    <div class="d-grid gap-2 col-11 mx-auto" style="padding: 15px">
-        <label class="d-grid gap-2 col-6 mx-auto" > Tags:
+            <span>{{ form.errors.quote }}</span>
+        </div>
+        <div class="form-group">
+            <label>Tags:</label>
             {{ form.tags }}
-        </label>
-        <span>{{ form.errors.tags }}</span>
-    </div>
-    <div class="d-grid gap-2 col-5 mx-auto">
-        <button type="submit" class="btn btn-primary btn">Submit</button>
-        <button type="reset" class="btn btn-secondary btn">Reset</button>
-    </div>
-</form>
+            <span>{{ form.errors.tags }}</span>
+        </div>
+        <br>
+        <div class="buttonForm">
+            <button type="submit" class="btn btn-primary btn">Submit</button>
+            <button type="reset" class="btn btn-secondary btn">Reset</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
