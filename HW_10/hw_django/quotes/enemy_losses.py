@@ -15,7 +15,7 @@ def get_urls():
     urls = ['/']
     prefix = '/month.php?month='
     for a in content:
-        url = prefix + re.search(r'\d{4}-\d{2}', a['href']).group()
+        url = prefix + re.search(r'\d{4}-\d{2}', content[0]['href']).group()  # if all change on 'a'
         urls.append(url)
     return urls
 
@@ -26,13 +26,14 @@ def spider(urls):
         response = requests.get(base_url + url)
         soup = BeautifulSoup(response.text, 'html.parser')
         content = soup.select('ul[class=see-also] li[class=gold]')
+        # print(content)
         for el in content:
             result = {}
             date = el.find('span', attrs={"class": "black"}).text
             try:
                 date = datetime.strptime(date, "%d.%m.%Y").isoformat()
-            except ValueError:
-                print(f'Error for date: {date}')
+            except ValueError as err:
+                print(f'Error for date: {date} {err}')
                 continue
             result.update({'date': date})
             losses = el.find('div').find('div').find('ul')
@@ -42,12 +43,18 @@ def spider(urls):
                 quantity = int(re.search(r'\d+', quantity).group())
                 result.update({name: quantity})
             data.append(result)
-    return data
+    return data[0]
+
+
+def main_enemy():
+    url_for_scraping = get_urls()
+    r = spider(url_for_scraping)
+    print(r)
+    return r
+
+    # with open('enemy_losses.json', 'w', encoding='utf-8') as fd:
+    #     json.dump(r, fd, ensure_ascii=False)
 
 
 if __name__ == '__main__':
-    url_for_scraping = get_urls()
-    print(url_for_scraping)
-    r = spider(url_for_scraping)
-    with open('json_fs/enemy.json', 'w', encoding='utf-8') as fd:
-        json.dump(r, fd, ensure_ascii=False)
+    main_enemy()

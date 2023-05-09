@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+from hw_django.quotes import views
 
 app_name = "quotes"
 
