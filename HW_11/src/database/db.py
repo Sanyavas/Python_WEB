@@ -1,28 +1,35 @@
-from sqlalchemy import create_engine, Column, Integer, String, Boolean
-from sqlalchemy.ext.declarative import declarative_base
+import configparser
+import pathlib
+
+from fastapi import HTTPException, status
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import SQLAlchemyError
 
-SQLALCHEMY_DATABASE_URL = "postgresql+psycopg2://postgres:567234@localhost:5432/fast_db"
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+# URI:  postgresql://username:password@domain:port/database
+file_config = pathlib.Path(__file__).parent.parent.joinpath('conf/config.ini')
+config = configparser.ConfigParser()
+config.read(file_config)
 
+username = config.get('DEV_DB', 'USER')
+password = config.get('DEV_DB', 'PASSWORD')
+domain = config.get('DEV_DB', 'DOMAIN')
+port = config.get('DEV_DB', 'PORT')
+database = config.get('DEV_DB', 'DB_NAME')
 
-class Note(Base):
-    __tablename__ = "notes"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(50))
-    description = Column(String(250))
-    done = Column(Boolean, default=False)
+URI = f"postgresql+psycopg2://{username}:{password}@{domain}:{port}/{database}"
 
-
-Base.metadata.create_all(bind=engine)
+engine = create_engine(URI, echo=True)
+DBSession = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 
 # Dependency
 def get_db():
-    db = SessionLocal()
+    db = DBSession()
     try:
         yield db
+    except SQLAlchemyError as err:
+        db.rollback()
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(err))
     finally:
         db.close()
