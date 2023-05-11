@@ -1,14 +1,18 @@
 import time
 
 from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from src.database.db import get_db
-from src.routes import contacts
+from src.routes import contacts, auth
 
 app = FastAPI()
 app.include_router(contacts.router, prefix="/api")
+app.include_router(auth.router, prefix='/api')
 
 
 @app.middleware("http")
@@ -19,10 +23,18 @@ async def add_process_time_header(request: Request, call_next):
     response.headers["X-Process-Time"] = str(process_time)
     return response
 
+templates = Jinja2Templates(directory='templates')
+app.mount('/static', StaticFiles(directory='static'), name='static')
 
-@app.get("/")
-def read_root():
-    return {"Hello": "Welcome to FastAPI !"}
+
+@app.get("/", response_class=HTMLResponse)
+async def root(request: Request):
+    return templates.TemplateResponse('index.html', {'request': request})
+
+
+# @app.get("/")
+# def read_root():
+#     return {"Hello": "Welcome to FastAPI !"}
 
 
 @app.get("/api/healthchecker")

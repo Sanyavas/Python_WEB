@@ -1,4 +1,4 @@
-from datetime import datetime, date, timedelta
+from datetime import datetime, timedelta
 
 date_now = datetime.now().date()
 a = datetime.now().date() - timedelta(weeks=1)
