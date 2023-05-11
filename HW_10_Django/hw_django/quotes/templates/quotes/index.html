@@ -1,0 +1,100 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="mainContent">
+        <h1 class="quoteTitle" rel="stylesheet">Quotes of famous people</h1>
+        <br>
+        <div class="col-md-8 themed-gris-col">
+            <br>
+            <div class="quotes" rel="stylesheet">
+
+                {% for quote in quotes %}
+
+                <div class="quote">
+                    <a class="leftAlignedImage col-2" href="{% url 'quotes:author_about' quote.author.id %}">
+                        <img alt="{{quote.author.fullname}}"
+                             src="{{quote.author.picture}}"
+                             height="70">
+                    </a>
+                    <div class="quoteText col-6" itemprop="text">{{quote.quote}}
+                        <br>
+                        ―
+                        <span class="authorOrTitle" rel="stylesheet">
+                    <a href="{% url 'quotes:author_about' quote.author.id %}">{{quote.author.fullname}}</a>
+                    </span>
+                    </div>
+                    <div class="tagsQuote">
+                        tags:
+                        {% for tag in quote.tags.all %}
+                        <a class="tag" style="text-decoration: none"
+                           href="{% url 'quotes:find_by_tag' tag.id %}">{{tag.name}}</a>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+            <nav>
+                <ul class="pager">
+                    <li class="previous-center">
+                        {% if quotes.has_previous %}
+                        <a href="?page=1" class="btn btn-light">&laquo; first</a>
+                        <a href="?page={{ quotes.previous_page_number }}" class="btn btn-light">previous</a>
+                        {% endif %}
+                        <span class="current">{{ quotes.number }} of {{ quotes.paginator.num_pages }}</span>
+                        {% if quotes.has_next %}
+                        <a href="?page={{ quotes.next_page_number }}" class="btn btn-light">next</a>
+                        <a href="?page={{ quotes.paginator.num_pages }}" class="btn btn-light">last &raquo;</a>
+                        {% endif %}
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-4 tags-box">
+            <div class="topTagsTitle">
+                <h2>Top Ten Tags</h2>
+                <br>
+            </div>
+            {% for tag in top_tags %}
+
+            <div class="tagsTop">
+                <a class="text-right"
+                   href="{% url 'quotes:find_by_tag' tag.tags__id %}">{{tag.tags__name}}</a>
+
+            </div>
+            {% endfor %}
+            <h6 class="endTags">10 Tags</h6>
+            <br>
+            <div class="losses_enemy">
+                <h4>Актуальні втрати ворога</h4>
+                <h4>на: {{date_enemy}}</h4>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Втрата</th>
+                        <th scope="col">Кількість</th>
+                    </tr>
+                    </thead>
+                    {% for key, value in losses_orcs.items %}
+                    <tbody>
+                    <tr>
+                        <td>{{key}}</td>
+                        <td>{{value}}</td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+                <div class="text-center">
+                    <a href="/"><img src="https://i.pinimg.com/564x/5f/84/44/5f844489090ff6ba808fbd99ca9455a5.jpg"
+                                     width="180"></a>
+                </div>
+                <h6 class="endTags">СЛАВА ЗСУ</h6>
+                <br>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+
+{% endblock %}
