@@ -3,6 +3,7 @@ from datetime import datetime, date
 from pydantic import BaseModel, Field, EmailStr, validator
 
 from normalize_number import normalize_phone
+from src.database.models import Role
 
 
 class ContactModel(BaseModel):
@@ -40,6 +41,7 @@ class UserResponse(BaseModel):
     username: str
     email: EmailStr
     avatar: str
+    role: Role
 
     class Config:
         orm_mode = True

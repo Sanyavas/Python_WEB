@@ -32,6 +32,21 @@ async def root(request: Request):
     return templates.TemplateResponse('index.html', {'request': request})
 
 
+@app.get("/logout", response_class=HTMLResponse)
+async def logout(request: Request):
+    return templates.TemplateResponse('logout.html', {'request': request})
+
+
+@app.get("/signin", response_class=HTMLResponse)
+async def signin(request: Request):
+    return templates.TemplateResponse('signin.html', {'request': request})
+
+
+@app.get("/signup", response_class=HTMLResponse)
+async def signup(request: Request):
+    return templates.TemplateResponse('signup.html', {'request': request})
+
+
 # @app.get("/")
 # def read_root():
 #     return {"Hello": "Welcome to FastAPI !"}

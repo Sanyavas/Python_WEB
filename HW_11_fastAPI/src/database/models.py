@@ -1,7 +1,15 @@
-from sqlalchemy import Column, Integer, String, DateTime, func
+import enum
+
+from sqlalchemy import Column, Integer, String, DateTime, func, Enum
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
+
+
+class Role(enum.Enum):
+    admin: str = 'admin'
+    moderator: str = 'moderator'
+    user: str = 'user'
 
 
 class Contact(Base):
@@ -24,4 +32,4 @@ class User(Base):
     password = Column(String(255), nullable=False)
     avatar = Column(String(255), nullable=True)
     refresh_token = Column(String(255), nullable=True)
-    # TODO: add roles
+    role = Column('role', Enum(Role), default=Role.user)
