@@ -9,10 +9,13 @@ from sqlalchemy.orm import Session
 
 from src.database.db import get_db
 from src.routes import contacts, auth
+from pages.router_auth import router as router_pages
+from src.routes.contacts import get_contacts
 
 app = FastAPI()
 app.include_router(contacts.router, prefix="/api")
 app.include_router(auth.router, prefix='/api')
+app.include_router(router_pages)
 
 
 @app.middleware("http")
@@ -28,24 +31,8 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 
 
 @app.get("/", response_class=HTMLResponse)
-async def root(request: Request):
-    return templates.TemplateResponse('index.html', {'request': request})
-
-
-@app.get("/logout", response_class=HTMLResponse)
-async def logout(request: Request):
-    return templates.TemplateResponse('logout.html', {'request': request})
-
-
-@app.get("/signin", response_class=HTMLResponse)
-async def signin(request: Request):
-    return templates.TemplateResponse('signin.html', {'request': request})
-
-
-@app.get("/signup", response_class=HTMLResponse)
-async def signup(request: Request):
-    return templates.TemplateResponse('signup.html', {'request': request})
-
+async def root(request: Request, operations=Depends(get_contacts)):
+    return templates.TemplateResponse('index.html', {'request': request, "contacts": operations})
 
 # @app.get("/")
 # def read_root():

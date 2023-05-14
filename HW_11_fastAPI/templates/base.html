@@ -12,9 +12,9 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="shortcut icon" href="/static/img/ok.jpg">
+    <link rel="shortcut icon" href="/static/img/fastapi_favicon.png">
 
-    <title>TheBestSite</title>
+    <title>TheBestSiteOnFastAPI</title>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -27,22 +27,34 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="logo"><a href="/"><img src="static/img/fastapi_white.png" height="50"></a>
+            <div class="logo"><a href="/"><img src="{{ url_for('static', path='img/fastapi_white.png') }}" height="50"></a>
             </div>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> CREATE <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> ACTIONS <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li class="divider"></li>
-                        <li><a href="#">Add Author</a></li>
+                        <li><a href="#">show contacts</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> LIBRARIES <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
                         <li class="divider"></li>
-                        <li><a href="#">Add Quote</a></li>
+                        <li><a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Add Tag</a></li>
+                        <li><a href="https://www.sqlalchemy.org/" target="_blank">SQLAlchemy</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://realpython.com/api-integration-in-python/" target="_blank">REST API</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://jwt.io/" target="_blank">JWT</a></li>
                     </ul>
                 </li>
 
@@ -54,13 +66,11 @@
                 <button type="submit" class="btn btn-default">Push</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-
                 <li><a href="/docs">SWAGGER</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <li><a href="/signup">Sign up</a></li>
+                <li><a href="/login">Login</a></li>
 
-                <li><a href="#">Logout</a></li>
-
-                <li><a href="#">Sign up</a></li>
-                <li><a href="#">Login</a></li>
 
 
             </ul>
@@ -69,42 +79,7 @@
 
 </nav>
 
-<div class="container">
-    <h2 class="titleForm">Login:</h2>
-    <br>
-    {% if form.errors %}
-    <span class="alert alert-danger" role="alert">{{form.non_field_errors}}</span>
-    {% endif %}
-
-    {% if messages %}
-    <div>
-        {% for message in messages %}
-        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">{{ message }}</div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <form class="col-sm-6" method="POST">
-        {% csrf_token %}
-
-        <div>
-            <label>Username:</label>
-            {{form.username}}
-            <span>{{form.errors.username}}</span>
-        </div>
-        <br>
-        <div>
-            <label>Password:</label>
-            {{form.password}}
-            <span>{{form.errors.password}}</span>
-        </div>
-        <br>
-        <div>
-            <button type="submit" class="btn btn-primary btn">Submit</button>
-            <button type="reset" class="btn btn-secondary btn">Reset</button>
-        </div>
-    </form>
-</div>
+{% block content %} {% endblock %}
 
 <hr>
 <footer>

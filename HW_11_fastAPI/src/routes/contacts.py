@@ -17,8 +17,7 @@ access_delete = RolesAccess([Role.admin])
 
 
 @router.get("/", response_model=list[ContactResponse], dependencies=[Depends(access_get)])
-async def get_contacts(limit: int = Query(10, le=300), offset: int = 0, db: Session = Depends(get_db),
-                       _: User = Depends(auth_service.get_current_user)):
+async def get_contacts(limit: int = Query(10, le=300), offset: int = 0, db: Session = Depends(get_db)):
     contacts = await rep_contacts.get_contacts(limit, offset, db)
     return contacts
 

@@ -1,116 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% extends "base.html" %}
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="shortcut icon" href="/static/img/fastapi_favicon.png">
-
-    <title>TheBestSiteOnFastAPI</title>
-</head>
-<body>
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <div class="logo"><a href="/"><img src="static/img/fastapi_white.png" height="50"></a>
-            </div>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> CREATE <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="divider"></li>
-                        <li><a href="#">Add Author</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Add Quote</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Add Tag</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> LIBRARIES <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="divider"></li>
-                        <li><a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI</a></li>
-                        <li class="divider"></li>
-                        <li><a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></li>
-                        <li class="divider"></li>
-                        <li><a href="https://realpython.com/api-integration-in-python/" target="_blank">REST API</a></li>
-                        <li class="divider"></li>
-                        <li><a href="https://docs.pydantic.dev/latest/" target="_blank">Pydantic</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-            <form class="navbar-form navbar-right" action="#" method="get">
-                <div class="form-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Push</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://warped-crescent-280549.postman.co/workspace/My-Workspace~322b293d-6993-4cba-8f08-3f2a5720faec/collection/27324228-7f83e6a7-9b5d-481d-8e1b-bfe613630391" target="_blank">Postman</a></li>
-                <li><a href="/docs">SWAGGER</a></li>
-                <li><a href="/logout">Logout</a></li>
-
-                <li><a href="/signup">Sign up</a></li>
-                <li><a href="/signin">Login</a></li>
-
-
-            </ul>
-        </div>
-    </div>
-
-</nav>
+{% block content %}
 
 <div class="container">
     <br>
     <div class="text-center">
-        <a href="/"><img src="https://i.pinimg.com/564x/25/7a/1e/257a1e7655c3fa4f163b641ddbafef38.jpg"  height="290"></a>
+        <a href="/"><img src="https://i.pinimg.com/564x/f8/81/73/f88173e6ca76c8cb0f5f65144c839dd0.jpg" height="120"></a>
     </div>
     <br>
-    <h3 class="text-center">Authentication on FastAPI...</h3>
+    <h2 class="text-center">Welcome to FastAPI</h2>
+    <hr>
+    <h3 class="text-center">All contacts:</h3>
+    {% for contact in contacts %}
+    <div>
+        <div class="alert alert-success col-sm-6" role="alert">
+            <p><strong>id:</strong> {{contact.id}}</p>
+            <p><strong>first_name:</strong> {{contact.first_name}}</p>
+            <p><strong>last_name:</strong> {{contact.last_name}}</p>
+            <div><strong>email:</strong> {{contact.email}}</div>
+            <div><strong>phone:</strong> {{contact.phone}}</div>
+            <div><strong>birthday:</strong> {{contact.birthday}}</div>
+            <div><strong>created_at:</strong> {{contact.created_at}}</div>
+            <div><strong>updated_at:</strong> {{contact.updated_at}}</div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
-<hr>
-<footer>
-    <div class="container">
-        <div class="social mb-1">
-            <a href="https://github.com/Sanyavas" target="_blank" rel="noopener noreferre">
-                <img src="https://s.dou.ua/assets/img/github.svg" width="25" height="25"></a>
-            <a href="https://www.linkedin.com/in/oleksandr-vasylyna-64bb71252/" target="_blank" rel="noopener noreferre">
-                <img src="https://s.dou.ua/assets/img/linkedin.png" width="25" height="25"></a>
-        </div>
-        <div class="fs-5 text-center">
-            <h6>SANYAVAS &copy; 2023</h6>
-        </div>
 
-    </div>
-</footer>
-
-
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
-</script>
-</body>
-</html>
+{% endblock %}

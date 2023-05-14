@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block content %}
 
+{% block content %}
 <div class="container">
     <div class="row">
-        <h2 class="display-5">Registration:</h2>
+        <h2 class="display-5">Login:</h2>
         <hr>
         <div class="text-danger font-weight-bold">
             {% for error in errors %}
@@ -25,25 +25,11 @@
     <div class="col-sm-6">
         <form method="POST">
             <div class="mb-3">
-                <label>Username</label>
-                <input type="text" required placeholder="Enter username" name="username" value="{{username}}"
-                       class="form-control">
-            </div>
-            <br>
-            <div class="mb-3">
                 <label>Email</label>
-                <input type="text" required placeholder="Enter email" name="email" value="{{email}}"
+                <input type="text" required placeholder="Your email" name="email" value="{{email}}"
                        class="form-control">
             </div>
             <br>
-            <div class="mb-3">
-                <label>Avatar</label>
-                <input type="text" required placeholder="add avatar with Gravatar" name="avatar" value="{{avatar}}"
-                       class="form-control">
-                <p>if you don't have avatar, follow the link to register:
-                    <a href="https://uk.gravatar.com/" target="_blank">Gravatar</a></p>
-            </div>
-
             <div class="mb-3">
                 <label>Password</label>
                 <input type="password" required placeholder="Your password" value="{{password}}"
@@ -54,5 +40,4 @@
         </form>
     </div>
 </div>
-
 {% endblock %}
