@@ -50,6 +50,7 @@ def main_enemy():
     r = spider(url_for_scraping)
     r['date'] = r['date'][:10]
     print(r)
+    print(f"enemy loses to save in json")
 
     with open('../quotes/json/enemy_losses.json', 'w', encoding='utf-8') as fd:
         json.dump(r, fd, ensure_ascii=False)

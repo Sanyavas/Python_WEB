@@ -10,14 +10,14 @@ from django.db.models import Q
 
 from .models import Author, Quote
 from .forms import QuoteForm, AuthorForm, TagForm
-from .enemy_losses import main_enemy
+# from hw_django.scheduler.enemy_losses import main_enemy
 
 sys.path.append("..")
 from utils.scrapy_bs import spider_bs  # noqa
 
 
 def main(request):
-    path_to_enemy = "C:\PycharmProjects\HomeWork_WEB\HW_10\hw_django\quotes\json\enemy_losses.json"
+    path_to_enemy = "C:\PycharmProjects\HomeWork_WEB\HW_10_Django\hw_django\quotes\json\enemy_losses.json"
     # db = get_mongodb()
     # quotes = db.quotes.find()
     quotes = Quote.objects.all()
@@ -78,7 +78,7 @@ def add_tag(request):
 
 
 def find_by_tag(request, _id):
-    path_to_enemy = "C:\PycharmProjects\HomeWork_WEB\HW_10\hw_django\quotes\json\enemy_losses.json"
+    path_to_enemy = "C:\PycharmProjects\HomeWork_WEB\HW_10_Django\hw_django\quotes\json\enemy_losses.json"
     per_page = 5
     quotes = Quote.objects.filter(tags=_id).all()
     paginator = Paginator(list(quotes), per_page)
@@ -117,11 +117,11 @@ def search_quotes(request):
     return redirect(to="quotes:home")
 
 
-def losses_orcs(request):
-    data = main_enemy()
-    data = "Test data how to add you to the site"
-    print("losses orcs OK")
-    return render(request, "quotes/index.html", context={'losses_orcs': data})
+# def losses_orcs(request):
+#     data = main_enemy()
+#     data = "Test data how to add you to the site"
+#     print("losses orcs OK")
+#     return render(request, "quotes/index.html", context={'losses_orcs': data})
 
 
 def dont_work(request):

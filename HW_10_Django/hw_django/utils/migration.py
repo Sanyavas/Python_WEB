@@ -1,3 +1,5 @@
+# py -m utils.migration
+
 import os
 import django
 
