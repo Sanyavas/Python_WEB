@@ -1,6 +1,6 @@
 import enum
 
-from sqlalchemy import Column, Integer, String, DateTime, func, Enum
+from sqlalchemy import Column, Integer, String, DateTime, func, Enum, Boolean
 from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
@@ -33,3 +33,4 @@ class User(Base):
     avatar = Column(String(255), nullable=True)
     refresh_token = Column(String(255), nullable=True)
     role = Column('role', Enum(Role), default=Role.user)
+    confirmed = Column(Boolean, default=False)

@@ -1,4 +1,3 @@
-import re
 from datetime import datetime, date
 from pydantic import BaseModel, Field, EmailStr, validator
 
@@ -31,9 +30,9 @@ class ContactResponse(ContactModel):
 
 
 class UserModel(BaseModel):
-    username: str = Field(min_length=5, max_length=15)
+    username: str = Field(min_length=3, max_length=15)
     email: EmailStr
-    password: str = Field(min_length=6, max_length=15)
+    password: str = Field(min_length=4, max_length=15)
 
 
 class UserResponse(BaseModel):
@@ -51,3 +50,7 @@ class TokenModel(BaseModel):
     access_token: str
     refresh_token: str
     token_type: str = "bearer"
+
+
+class RequestEmail(BaseModel):
+    email: EmailStr

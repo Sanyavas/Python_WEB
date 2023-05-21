@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, status, Query, Path, HTTPException
 from sqlalchemy.orm import Session
+from fastapi_limiter.depends import RateLimiter
 
 from schemas import ContactModel, ContactResponse
 from src.services.auth import auth_service
@@ -16,7 +17,9 @@ access_update = RolesAccess([Role.admin, Role.moderator])
 access_delete = RolesAccess([Role.admin])
 
 
-@router.get("/", response_model=list[ContactResponse], dependencies=[Depends(access_get)])
+@router.get("/", response_model=list[ContactResponse],
+            dependencies=[Depends(access_get), Depends(RateLimiter(times=2, seconds=5))],
+            description="Two request on 5 second")
 async def get_contacts(limit: int = Query(10, le=300), offset: int = 0, db: Session = Depends(get_db)):
     contacts = await rep_contacts.get_contacts(limit, offset, db)
     return contacts
