@@ -1,4 +1,5 @@
 import json
+import os
 
 from django.core.paginator import Paginator
 from django.db.models import Count
@@ -9,7 +10,8 @@ from .models import Author, Quote
 from .forms import QuoteForm, AuthorForm, TagForm
 from .templatetags.enemy_losses import main_enemy
 
-enemy_loses_json = "C:\PycharmProjects\HomeWork_WEB\HW_10_Django\hw_django\quotes\json\enemy_losses.json"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+enemy_loses_json = os.path.join(current_dir, 'templatetags', 'enemy_losses.json')
 
 
 def main(request):
