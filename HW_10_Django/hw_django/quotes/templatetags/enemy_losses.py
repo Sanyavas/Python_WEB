@@ -1,15 +1,11 @@
 import json
 import re
-import os
 from datetime import datetime
 
 import requests
 from bs4 import BeautifulSoup
 
 base_url = "https://index.minfin.com.ua/ua/russian-invading/casualties"
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-enemy_loses_json = os.path.join(current_dir, 'json', 'enemy_losses.json')
 
 
 def get_urls():
@@ -59,8 +55,8 @@ def main_enemy():
     print("---------------------------")
     print(f"Enemy Loses updated for {datetime.today().date()}")
     print("---------------------------")
-    print(enemy_loses_json)
-    with open('./enemy_losses.json', 'w', encoding='utf-8') as fd:
+
+    with open('enemy_losses.json', 'w', encoding='utf-8') as fd:
         json.dump(r, fd, ensure_ascii=False)
 
     return r
