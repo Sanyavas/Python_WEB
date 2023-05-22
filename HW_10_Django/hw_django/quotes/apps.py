@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-# from hw_django.scheduler import scheduler
+# from ..scheduler import scheduler
 
 
 class QuotesConfig(AppConfig):

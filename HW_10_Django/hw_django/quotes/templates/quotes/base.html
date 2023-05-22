@@ -54,12 +54,15 @@
                 </div>
                 <button type="submit" class="btn btn-default">Push</button>
             </form>
+
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_superuser %}
                 <li><a href="{% url 'quotes:dont_work' %}">Parsing</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
+                <li><a href="{% url 'quotes:run_scrapy' %}">Update enemy</a></li>
                 <li><a href="/users/logout">Logout</a></li>
+                <li><a href="/users/user">{{ user.username }}  <img src="https://i.pinimg.com/564x/a5/82/9a/a5829ac0d2b9d70943c41c6f48e5acea.jpg" height="25"></a></li>
                 {% else %}
                 <li><a href="/users/signup">Sign up</a></li>
                 <li><a href="/users/signin">Login</a></li>

@@ -1,10 +1,8 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore
-from django.utils import timezone
-from django_apscheduler.models import DjangoJobExecution
 import sys
 
-from enemy_losses import main_enemy
+from hw_django.quotes.templatetags.enemy_losses import main_enemy
 
 
 def start():
@@ -14,6 +12,7 @@ def start():
     scheduler.add_job(main_enemy, 'interval', hours=24, name='enemy_losses', jobstore='default')
     scheduler.start()
     print("Scheduler started...", file=sys.stdout)
+
 
 # runapscheduler.py
 # import logging

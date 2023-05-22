@@ -50,3 +50,8 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     success_url = reverse_lazy('users:password_reset_done')
     success_message = "An email with instructions to reset your password has been sent to %(email)s."
     subject_template_name = 'users/password_reset_subject.txt'
+
+
+def user_data(request):
+    return render(request, "users/user.html", context={})
+

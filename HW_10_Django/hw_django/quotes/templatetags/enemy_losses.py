@@ -25,12 +25,14 @@ def spider(urls):
     for url in urls:
         response = requests.get(base_url + url)
         soup = BeautifulSoup(response.text, 'html.parser')
-        content = soup.select('ul[class=see-also] li[class=gold]')
+        content = soup.select('ul[class=see-also] li[class=gold]', limit=1)
         for el in content:
             result = {}
             date = el.find('span', attrs={"class": "black"}).text
+
             try:
                 date = datetime.strptime(date, "%d.%m.%Y").isoformat()
+
             except ValueError as err:
                 print(f'Error for date: {date} {err}')
                 continue
@@ -42,6 +44,7 @@ def spider(urls):
                 quantity = int(re.search(r'\d+', quantity).group())
                 result.update({name: quantity})
             data.append(result)
+
     return data[0]
 
 
@@ -49,10 +52,10 @@ def main_enemy():
     url_for_scraping = get_urls()
     r = spider(url_for_scraping)
     r['date'] = r['date'][:10]
-    print(r)
-    print(f"enemy loses to save in json")
-
-    with open('../quotes/json/enemy_losses.json', 'w', encoding='utf-8') as fd:
+    print("---------------------------")
+    print(f"Enemy Loses updated for {datetime.today().date()}")
+    print("---------------------------")
+    with open('C:\PycharmProjects\HomeWork_WEB\HW_10_Django\hw_django\quotes\json\enemy_losses.json', 'w', encoding='utf-8') as fd:
         json.dump(r, fd, ensure_ascii=False)
 
     return r

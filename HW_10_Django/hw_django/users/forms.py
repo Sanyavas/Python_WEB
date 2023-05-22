@@ -35,9 +35,9 @@ class LoginForm(AuthenticationForm):
         fields = ["username", "password"]
 
 
-# class ProfileForm(forms.ModelForm):
-#     avatar = forms.ImageField(widget=forms.FileInput())
-#
-#     class Meta:
-#         model = Profile
-#         fields = ['avatar']
+class ProfileForm(forms.ModelForm):
+    avatar = forms.ImageField(widget=forms.FileInput())
+
+    class Meta:
+        model = User
+        fields = ['avatar']
