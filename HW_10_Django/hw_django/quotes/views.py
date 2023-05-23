@@ -22,7 +22,6 @@ def main(request):
     paginator = Paginator(list(quotes), per_page)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    print(enemy_loses_json)
     with open(enemy_loses_json, 'r', encoding='utf-8') as fd:
         enemy = json.load(fd)
     date_enemy = enemy.pop('date')

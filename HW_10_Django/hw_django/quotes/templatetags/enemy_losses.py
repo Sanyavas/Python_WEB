@@ -53,10 +53,10 @@ def main_enemy():
     r = spider(url_for_scraping)
     r['date'] = r['date'][:10]
     print("---------------------------")
-    print(f"Enemy Loses updated for {datetime.today().date()}")
+    print(f"Enemy Loses updated for {r['date']}")
     print("---------------------------")
 
-    with open('enemy_losses.json', 'w', encoding='utf-8') as fd:
+    with open('quotes/templatetags/enemy_losses.json', 'w', encoding='utf-8') as fd:
         json.dump(r, fd, ensure_ascii=False)
 
     return r
