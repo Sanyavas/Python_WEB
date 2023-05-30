@@ -1,9 +1,18 @@
-from .models import Quote, Tag, Author
-import openai
 import json
+from pathlib import Path
+import environ
 
-# api_key = "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"
-api_key = "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"
+import openai
+
+from .models import Quote, Tag, Author
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+
+environ.Env.read_env(BASE_DIR / '.env')
+
+
+api_key = env('API_KEY_OPENAI')
 openai.api_key = api_key
 
 
