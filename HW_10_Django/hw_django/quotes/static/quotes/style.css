@@ -4,6 +4,12 @@ a {
     text-decoration: none;
 }
 
+tr {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    color: #ad998b;
+    text-decoration: none;
+}
+
 .authorOrTitle {
     font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
     font-weight: bold;

@@ -17,10 +17,12 @@ def get_urls():
     for a in content:
         url = prefix + re.search(r'\d{4}-\d{2}', content[0]['href']).group()  # if all change on 'a'
         urls.append(url)
+    print(urls)
     return urls
 
 
 def spider(urls):
+
     data = []
     for url in urls:
         response = requests.get(base_url + url)
@@ -57,7 +59,7 @@ def main_enemy():
     print("---------------------------")
 
     with open('quotes/templatetags/enemy_losses.json', 'w', encoding='utf-8') as fd:
-        json.dump(r, fd, ensure_ascii=False)
+        json.dump(r, fd, ensure_ascii=False, indent=4)
 
     return r
 

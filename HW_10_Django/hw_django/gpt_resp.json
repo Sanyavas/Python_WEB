@@ -1,0 +1,21 @@
+{
+    "id": "chatcmpl-7Lz785dhurDkbfXPjP3Kpq32i5Mic",
+    "object": "chat.completion",
+    "created": 1685474166,
+    "model": "gpt-3.5-turbo-0301",
+    "usage": {
+        "prompt_tokens": 59,
+        "completion_tokens": 33,
+        "total_tokens": 92
+    },
+    "choices": [
+        {
+            "message": {
+                "role": "assistant",
+                "content": "\"Love is the poetry that the heart cannot help but express, each line a lyric, each stanza a symphony, a masterpiece written on the soul's canvas.\""
+            },
+            "finish_reason": "stop",
+            "index": 0
+        }
+    ]
+}
