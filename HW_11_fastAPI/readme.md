@@ -25,3 +25,10 @@
 * CLOUDINARY_NAME='cloudinary_name'
 * CLOUDINARY_API_KEY='0000000000000000'
 * CLOUDINARY_API_SECRET='secret'
+
+
+Запуск тестів
+
+```bash
+pytest --cov=. --cov-report html tests/
+```

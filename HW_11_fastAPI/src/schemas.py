@@ -9,14 +9,14 @@ class ContactModel(BaseModel):
     first_name: str = Field(max_length=25)
     last_name: str = Field(max_length=25)
     email: EmailStr
-    phone: str = Field(example="0672553355")
+    phone: str = Field(example="+380672553355")
     birthday: date
 
     @validator("phone")
     def phone_number(cls, v):
         fix_phone = normalize_phone(v)
         if fix_phone is None:
-            raise ValueError("Format phone number: '0502586987'")
+            raise ValueError("Format phone number: '+30502586987'")
         return fix_phone
 
 

@@ -1,4 +1,5 @@
 import time
+from pathlib import Path
 from ipaddress import ip_address
 from typing import Callable
 
@@ -26,8 +27,8 @@ app.include_router(auth.router, prefix='/api')
 app.include_router(users.router, prefix='/api')
 
 templates = Jinja2Templates(directory='templates')
-app.mount('/static', StaticFiles(directory='static'), name='static')
-
+BASE_DIR = Path(__file__).parent
+app.mount('/static', StaticFiles(directory=BASE_DIR / 'static'), name='static')
 banned_ips = [ip_address("192.168.1.1"), ip_address("192.168.1.2")]
 
 
@@ -41,7 +42,7 @@ async def startup():
 # Видача дозволів
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['http://127.0.0.1:5500', "*"],
+    allow_origins=['http://127.25.0.1:5500', "*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -49,13 +50,13 @@ app.add_middleware(
 
 
 # бан хостів
-@app.middleware("http")
-async def ban_ips(request: Request, call_next: Callable):
-    ip = ip_address(request.client.host)
-    if ip in banned_ips:
-        return JSONResponse(status_code=status.HTTP_403_FORBIDDEN, content={"detail": "You are banned"})
-    response = await call_next(request)
-    return response
+# @app.middleware("http")
+# async def ban_ips(request: Request, call_next: Callable):
+#     ip = ip_address(request.client.host)
+#     if ip in banned_ips:
+#         return JSONResponse(status_code=status.HTTP_403_FORBIDDEN, content={"detail": "You are banned"})
+#     response = await call_next(request)
+#     return response
 
 
 # ЮзерАгент показує з якого пристрою зайшов

@@ -17,5 +17,10 @@ def normalize_phone(value):
             new_value = "+38044" + new_value
         else:
             new_value = None
+    else:
+        new_value = None
 
     return new_value
+
+
+

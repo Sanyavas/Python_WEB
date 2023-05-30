@@ -25,8 +25,25 @@ redis = "^4.5.5"
 python-dotenv = "^1.0.0"
 fastapi-limiter = "^0.1.5"
 cloudinary = "^1.33.0"
+httpx = "^0.24.1"
+faker = "^18.9.0"
+pytest-mock = "^3.10.0"
+pytest-asyncio = "^0.21.0"
+asynctest = "^0.13.0"
+pyjwt = "^2.7.0"
 
+
+[tool.poetry.group.dev.dependencies]
+sphinx = "^7.0.1"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.3.1"
+pytest-cov = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
