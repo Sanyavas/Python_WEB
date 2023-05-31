@@ -1,0 +1,21 @@
+{
+    "id": "chatcmpl-7MFwvM3EVVZJLle69XzXZu1K3jsgP",
+    "object": "chat.completion",
+    "created": 1685538881,
+    "model": "gpt-3.5-turbo-0301",
+    "usage": {
+        "prompt_tokens": 59,
+        "completion_tokens": 54,
+        "total_tokens": 113
+    },
+    "choices": [
+        {
+            "message": {
+                "role": "assistant",
+                "content": "\"Poetry is the language of love, written in hearts and spoken with the soul. It's the art of expressing the indescribable, the beauty of capturing emotions in words. True love and poetry are two halves of a whole, incomplete without each other.\""
+            },
+            "finish_reason": "stop",
+            "index": 0
+        }
+    ]
+}

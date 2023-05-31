@@ -12,24 +12,25 @@
                 {% for quote in quotes %}
 
                 <div class="quote">
-                    <a class="leftAlignedImage col-2" href="{% url 'quotes:author_about' quote.author.id %}">
-                        <img alt="{{quote.author.fullname}}"
-                             src="{{quote.author.picture}}"
-                             height="70">
-                    </a>
-                    <div class="quoteText col-6" itemprop="text">{{quote.quote}}
-                        <br>
-                        ―
-                        <span class="authorOrTitle" rel="stylesheet">
-                    <a href="{% url 'quotes:author_about' quote.author.id %}">{{quote.author.fullname}}</a>
-                    </span>
-                    </div>
-                    <div class="tagsQuote">
-                        tags:
-                        {% for tag in quote.tags.all %}
-                        <a class="tag" style="text-decoration: none"
-                           href="{% url 'quotes:find_by_tag' tag.id %}">{{tag.name}}</a>
-                        {% endfor %}
+                    <div class="clearfix">
+                        <a class="col-md-2 float-md-end mb-3 ms-md-3l"
+                           href="{% url 'quotes:author_about' quote.author.id %}">
+                            <img class="img-thumbnail" alt="{{quote.author.fullname}}" src="{{quote.author.picture}}" height="95">
+                        </a>
+                        <div class="textQuote">{{quote.quote}}
+                            <br>
+                            ―
+                            <span class="authorOrTitle" rel="stylesheet">
+                            <a href="{% url 'quotes:author_about' quote.author.id %}">{{quote.author.fullname}}</a>
+                            </span>
+                        </div>
+                        <div class="tagsQuote">
+                            tags:
+                            {% for tag in quote.tags.all %}
+                            <a class="tag" style="text-decoration: none"
+                               href="{% url 'quotes:find_by_tag' tag.id %}">{{tag.name}}</a>
+                            {% endfor %}
+                        </div>
                     </div>
                     <hr>
                 </div>

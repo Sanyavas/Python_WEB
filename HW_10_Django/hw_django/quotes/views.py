@@ -11,26 +11,26 @@ from .forms import QuoteForm, AuthorForm, TagForm
 from .templatetags.enemy_losses import main_enemy
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-enemy_loses_json = os.path.join(current_dir, 'templatetags', 'enemy_losses.json')
+enemy_loses_json = os.path.join(current_dir, 'json', 'enemy_losses.json')
 
 
 def main(request):
     # db = get_mongodb()
     # quotes = db.quotes.find()
     quotes = Quote.objects.all()
-    per_page = 10
+    per_page = 20
     paginator = Paginator(list(quotes), per_page)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     with open(enemy_loses_json, 'r', encoding='utf-8') as fd:
         enemy = json.load(fd)
-    date_enemy = enemy.pop('date')
+    date_enemy = enemy[0].pop('date')
 
     top_tags = Quote.objects.values('tags__name', "tags__id") \
                    .annotate(quote_count=Count('tags__name')) \
                    .order_by('-quote_count')[:10]
     return render(request, "quotes/index.html", context={'quotes': page_obj, "top_tags": top_tags,
-                                                         "losses_orcs": enemy, "date_enemy": date_enemy})
+                                                         "losses_orcs": enemy[0], "date_enemy": date_enemy})
 
 
 def author_about(request, _id):
@@ -74,7 +74,7 @@ def add_tag(request):
 
 
 def find_by_tag(request, _id):
-    per_page = 5
+    per_page = 10
     quotes = Quote.objects.filter(tags=_id).all()
     paginator = Paginator(list(quotes), per_page)
     page_number = request.GET.get('page')
@@ -86,10 +86,10 @@ def find_by_tag(request, _id):
 
     with open(enemy_loses_json, 'r', encoding='utf-8') as fd:
         enemy = json.load(fd)
-    date_enemy = enemy.pop('date')
+    date_enemy = enemy[0].pop('date')
 
     return render(request, "quotes/index.html",
-                  context={'quotes': page_obj, "top_tags": top_tags, "losses_orcs": enemy, "date_enemy": date_enemy})
+                  context={'quotes': page_obj, "top_tags": top_tags, "losses_orcs": enemy[0], "date_enemy": date_enemy})
 
 
 def search_quotes(request):

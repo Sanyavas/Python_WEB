@@ -4,14 +4,12 @@ import environ
 
 import openai
 
-from .models import Quote, Tag, Author
+from ..models import Quote, Tag, Author
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+THIS_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 
-environ.Env.read_env(BASE_DIR / '.env')
-
-
+environ.Env.read_env(THIS_DIR / '.env')
 api_key = env('API_KEY_OPENAI')
 openai.api_key = api_key
 
@@ -29,7 +27,7 @@ def generate_qoute():
             {"role": "user", "content": prompt}
         ]
     )
-    with open("gpt_resp.json", "w") as file:
+    with open("quotes/json/gpt_resp.json", "w") as file:
         json.dump(response, file, indent=4, ensure_ascii=False)
     total_tokens = response.get("usage").get("total_tokens")
     print("====================")

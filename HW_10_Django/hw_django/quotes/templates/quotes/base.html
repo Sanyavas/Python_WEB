@@ -60,9 +60,17 @@
                 <li><a href="/admin">Administration</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'quotes:run_scrapy' %}">Update enemy</a></li>
-                <li><a href="/users/logout">Logout</a></li>
-                <li><a href="/users/user">{{ user.username }}  <img src="https://i.pinimg.com/564x/a5/82/9a/a5829ac0d2b9d70943c41c6f48e5acea.jpg" height="25"></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
+                        <img src="https://i.pinimg.com/564x/a5/82/9a/a5829ac0d2b9d70943c41c6f48e5acea.jpg" height="25">
+                        <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a href="{% url 'quotes:run_scrapy' %}">Update enemy</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/users/logout">Logout</a></li>
+                    </ul>
+                </li>
                 {% else %}
                 <li><a href="/users/signup">Sign up</a></li>
                 <li><a href="/users/signin">Login</a></li>

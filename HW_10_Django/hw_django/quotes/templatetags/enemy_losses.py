@@ -47,18 +47,18 @@ def spider(urls):
                 result.update({name: quantity})
             data.append(result)
 
-    return data[0]
+    return data
 
 
 def main_enemy():
     url_for_scraping = get_urls()
     r = spider(url_for_scraping)
-    r['date'] = r['date'][:10]
+    r[0]['date'] = r[0]['date'][:10]
     print("---------------------------")
-    print(f"Enemy Loses updated for {r['date']}")
+    print(f"Enemy Loses updated for {r[0]['date']}")
     print("---------------------------")
 
-    with open('quotes/templatetags/enemy_losses.json', 'w', encoding='utf-8') as fd:
+    with open('quotes/json/enemy_losses.json', 'w', encoding='utf-8') as fd:
         json.dump(r, fd, ensure_ascii=False, indent=4)
 
     return r

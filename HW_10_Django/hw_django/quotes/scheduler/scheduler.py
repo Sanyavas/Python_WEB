@@ -2,7 +2,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore
 import sys
 
-from ..quote_generator_gpt import gpt_creator
+from ..templatetags.quote_generator_gpt import gpt_creator
 from ..templatetags.enemy_losses import main_enemy
 
 
