@@ -16,46 +16,33 @@
             <div class="quotes" rel="stylesheet">
 
                 {% for quote in quotes %}
+
                 <div class="quote">
-                    <a class="leftAlignedImage col-2" href="{% url 'quotes:author_about' quote.author.id %}">
-                        <img alt="{{quote.author.fullname}}"
-                             src="{{quote.author.picture}}"
-                             height="70">
-                    </a>
-                    <div class="quoteText col-6" itemprop="text">{{quote.quote}}
-                        <br>
-                        ―
-                        <span class="authorOrTitle" rel="stylesheet">
-                    <a href="{% url 'quotes:author_about' quote.author.id %}">{{quote.author.fullname}}</a>
-                    </span>
-                    </div>
-                    <div class="tagsQuote">
-                        tags:
-                        {% for tag in quote.tags.all %}
-                        <a class="tag" style="text-decoration: none"
-                           href="{% url 'quotes:find_by_tag' tag.id %}">{{tag.name}}</a>
-                        {% endfor %}
+                    <div class="clearfix">
+                        <a class="col-md-2 float-md-end mb-3 ms-md-3l"
+                           href="{% url 'quotes:author_about' quote.author.id %}">
+                            <img class="img-thumbnail" alt="{{quote.author.fullname}}" src="{{quote.author.picture}}" height="95">
+                        </a>
+                        <div class="textQuote">{{quote.quote}}
+                            <br>
+                            ―
+                            <span class="authorOrTitle" rel="stylesheet">
+                            <a href="{% url 'quotes:author_about' quote.author.id %}">{{quote.author.fullname}}</a>
+                            </span>
+                        </div>
+                        <div class="tagsQuote">
+                            tags:
+                            {% for tag in quote.tags.all %}
+                            <a class="tag" style="text-decoration: none"
+                               href="{% url 'quotes:find_by_tag' tag.id %}">{{tag.name}}</a>
+                            {% endfor %}
+                        </div>
                     </div>
                     <hr>
                 </div>
                 {% endfor %}
             </div>
-<!--            <nav>-->
-<!--                <ul class="pager">-->
-<!--                    <li class="previous-center">-->
-<!--                        {% if quotes.has_previous %}-->
-<!--                        <a href="?page=1" class="btn btn-light">&laquo; first</a>-->
-<!--                        <a href="?page={{ quotes.previous_page_number }}" class="btn btn-light">previous</a>-->
-<!--                        {% endif %}-->
-<!--                        <span class="current">Page {{ quotes.number }} of {{ quotes.paginator.num_pages }}</span>-->
-<!--                        {% if quotes.has_next %}-->
-<!--                        <a href="?page={{ quotes.next_page_number }}" class="btn btn-light">next</a>-->
-<!--                        <a href="?page={{ quotes.paginator.num_pages }}" class="btn btn-light">last &raquo;</a>-->
-<!--                        {% endif %}-->
-<!--                </ul>-->
-<!--            </nav>-->
         </div>
-
     </div>
 </div>
 {% endblock %}

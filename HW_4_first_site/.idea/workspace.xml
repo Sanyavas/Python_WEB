@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="bde65aaa-3351-4383-ab8f-79f7f27b2d78" name="Changes" comment="" />
+    <list default="true" id="bde65aaa-3351-4383-ab8f-79f7f27b2d78" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../HW_11_fastAPI/src/services/roles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HW_11_fastAPI/templates/logout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HW_11_fastAPI/templates/signin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HW_11_fastAPI/templates/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/by_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/by_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/file.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/migrations/versions/0a2c51c23599_init.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/migrations/versions/0a2c51c23599_init.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/migrations/versions/19ad36cafb95_add_users.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/migrations/versions/19ad36cafb95_add_users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/services/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/src/services/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/src/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/src/database/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/src/routes/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/src/routes/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/src/routes/contacts.py" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/src/routes/contacts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HW_11_fastAPI/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HW_11_fastAPI/templates/index.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +42,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/PycharmProjects/HomeWork_WEB"
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/PycharmProjects/HomeWork_WEB/HW_4_first_site"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

@@ -58,7 +58,7 @@ def main_enemy():
     print(f"Enemy Loses updated for {r[0]['date']}")
     print("---------------------------")
 
-    with open('quotes/json/enemy_losses.json', 'w', encoding='utf-8') as fd:
+    with open('hw_django/quotes/json/enemy_losses.json', 'w', encoding='utf-8') as fd:
         json.dump(r, fd, ensure_ascii=False, indent=4)
 
     return r

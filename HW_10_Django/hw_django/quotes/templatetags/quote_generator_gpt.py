@@ -27,7 +27,7 @@ def generate_qoute():
             {"role": "user", "content": prompt}
         ]
     )
-    with open("quotes/json/gpt_resp.json", "w") as file:
+    with open("hw_django/quotes/json/gpt_resp.json", "w") as file:
         json.dump(response, file, indent=4, ensure_ascii=False)
     total_tokens = response.get("usage").get("total_tokens")
     print("====================")
