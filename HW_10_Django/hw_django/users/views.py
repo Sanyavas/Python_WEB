@@ -4,21 +4,8 @@ from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+
 from .forms import RegisterForm
-
-
-# def signupuser(request):
-#     if request.user.is_authenticated:
-#         return redirect(to='quotes:main')
-#
-#     if request.method == 'POST':
-#         form = RegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect(to='quotes:main')
-#         else:
-#             return render(request, 'users/signup.html', context={'form': form})
-#     return render(request, 'users/signup.html', context={'form': RegisterForm()})
 
 
 class RegisterView(View):
@@ -54,4 +41,3 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 
 def user_data(request):
     return render(request, "users/user.html", context={})
-

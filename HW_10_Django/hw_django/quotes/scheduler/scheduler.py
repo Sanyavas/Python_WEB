@@ -7,6 +7,9 @@ from ..templatetags.enemy_losses import main_enemy
 
 
 def start():
+    """
+    The start function is called by the scheduler.py file, which is run as a cron job every minute.
+    """
     scheduler = BackgroundScheduler()
     scheduler.add_jobstore(DjangoJobStore(), "default")
     # run this job every day at 9.30 p.m.

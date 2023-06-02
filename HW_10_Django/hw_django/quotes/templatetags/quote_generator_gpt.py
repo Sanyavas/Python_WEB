@@ -14,7 +14,10 @@ api_key = env('API_KEY_OPENAI')
 openai.api_key = api_key
 
 
-def generate_qoute():
+def generate_quote():
+    """
+     The function uses the OpenAI API to generate a quote about poetry.
+    """
     worker = "You are a creative writer."
     prompt = """Create creative quote about poetry, poetry should be on love style.
     Quote should be on English language, and contain about 300 symbols
@@ -37,6 +40,9 @@ def generate_qoute():
 
 
 def add_quote_to_db(quote: str):
+    """
+    The add_quote_to_db function takes a string as an argument and adds it to the database.
+    """
     author = Author.objects.filter(fullname="ChatGPT").first()
     tag = Tag.objects.get(name="poetry")
     new_quote = Quote.objects.create(quote=quote, author=author)
@@ -46,10 +52,13 @@ def add_quote_to_db(quote: str):
 
 
 def gpt_creator():
+    """
+    The gpt_creator function is a function that generates quotes using the GPT-3.5 model.
+    """
     print(f"Start generation quote")
-    quote = generate_qoute()
+    quote = generate_quote()
     add_quote_to_db(quote)
 
 
 if __name__ == "__main__":
-    print(generate_qoute())
+    print(generate_quote())

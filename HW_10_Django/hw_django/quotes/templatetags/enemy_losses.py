@@ -9,6 +9,9 @@ base_url = "https://index.minfin.com.ua/ua/russian-invading/casualties"
 
 
 def get_urls():
+    """
+    The function uses the requests library to get the html from the base_url, then parses it using BeautifulSoup.
+    """
     response = requests.get(base_url)
     soup = BeautifulSoup(response.text, 'html.parser')
     content = soup.select('div[class=ajaxmonth] h4[class=normal] a')
@@ -22,7 +25,10 @@ def get_urls():
 
 
 def spider(urls):
-
+    """
+    The spider function takes a list of urls and returns a list of dictionaries.
+    Each dictionary contains the date, name and quantity for each loss.
+    """
     data = []
     for url in urls:
         response = requests.get(base_url + url)
@@ -40,8 +46,8 @@ def spider(urls):
                 continue
             result.update({'date': date})
             losses = el.find('div').find('div').find('ul')
-            for l in losses:
-                name, quantity, *_ = l.text.split('—')
+            for loss in losses:
+                name, quantity, *_ = loss.text.split('—')
                 name = name.strip()
                 quantity = int(re.search(r'\d+', quantity).group())
                 result.update({name: quantity})
@@ -51,6 +57,9 @@ def spider(urls):
 
 
 def main_enemy():
+    """
+    The main_enemy function scrapes the enemy losses page of the website and returns a list of dictionaries.
+    """
     url_for_scraping = get_urls()
     r = spider(url_for_scraping)
     r[0]['date'] = r[0]['date'][:10]
