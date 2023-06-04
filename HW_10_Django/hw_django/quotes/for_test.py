@@ -1,14 +1,66 @@
 import json
-import os
+import re
+from datetime import datetime
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-enemy_loses_json = os.path.join(current_dir, 'json', 'enemy_losses.json')
+import requests
+from bs4 import BeautifulSoup
+
+base_url = "https://index.minfin.com.ua/ua/russian-invading/casualties"
 
 
-with open(enemy_loses_json, 'r', encoding='utf-8') as fd:
-    enemy = json.load(fd)
-date_enemy = enemy[0].pop('date')
+def get_urls():
+    response = requests.get(base_url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    content = soup.select('div[class=ajaxmonth] h4[class=normal] a')
+    urls = ['/']
+    prefix = '/month.php?month='
+    for a in content:
+        url = prefix + re.search(r'\d{4}-\d{2}', a['href']).group()
+        urls.append(url)
+    return urls
 
-print(enemy)
-print("++++++")
-print(date_enemy)
+
+def spider(urls):
+    data = []
+    for url in urls:
+        response = requests.get(base_url + url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        content = soup.select('ul[class=see-also] li[class=gold]')
+        for el in content:
+            result = {}
+            date = el.find('span', attrs={"class": "black"}).text
+            try:
+                date = datetime.strptime(date, "%d.%m.%Y").isoformat()
+            except ValueError:
+                print(f'Error for date: {date}')
+                continue
+            result.update({'date': date})
+            losses = el.find('div').find('div').find('ul')
+            for l in losses:
+                name, quantity, *_ = l.text.split('—')
+                name = name.strip()
+                quantity = int(re.search(r'\d+', quantity).group())
+                result.update({name: quantity})
+            data.append(result)
+    return data
+
+
+def main_enemy():
+    """
+    The main_enemy function scrapes the enemy losses page of the website and returns a list of dictionaries.
+    """
+    url_for_scraping = get_urls()
+    r = spider(url_for_scraping)
+    r[0]['date'] = r[0]['date'][:10]
+    print("---------------------------")
+    print(f"Enemy Loses updated for {r[0]['date']}")
+    print("---------------------------")
+
+    with open('enemy_losses.json', 'w', encoding='utf-8') as fd:
+        json.dump(r, fd, ensure_ascii=False, indent=4)
+
+    return r
+
+
+if __name__ == '__main__':
+    main_enemy()
