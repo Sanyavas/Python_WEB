@@ -55,9 +55,16 @@
                 {% if user.is_authenticated %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
-                        <img src="https://i.pinimg.com/564x/a5/82/9a/a5829ac0d2b9d70943c41c6f48e5acea.jpg" height="25">
+                        {% if avatar_url %}
+                        <img src="{{ avatar_url }}" alt="Avatar" height="25" style="border-radius: 50%;">
+                        {% else %}
+                        <img src="https://i.pinimg.com/564x/a5/82/9a/a5829ac0d2b9d70943c41c6f48e5acea.jpg"
+                             alt="Placeholder" height="25" style="border-radius: 50%;">
+                        {% endif %}
                         <b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        <li><a class="dropdown-item" href="/users/profile">Profile</a></li>
                         <li class="divider"></li>
                         <li><a href="{% url 'quotes:run_scrapy' %}">Update enemy</a></li>
                         <li class="divider"></li>
@@ -83,7 +90,7 @@
 {% block content %} {% endblock %}
 
 <hr>
-<footer>
+<footer class="footer">
     <div class="container">
         <div class="social mb-1">
             <a href="https://github.com/Sanyavas" target="_blank" rel="noopener noreferre">

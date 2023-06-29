@@ -16,7 +16,8 @@
                     <div class="clearfix">
                         <a class="col-md-2 float-md-end mb-3 ms-md-3l"
                            href="{% url 'quotes:author_about' quote.author.id %}">
-                            <img class="img-thumbnail" alt="{{quote.author.fullname}}" src="{{quote.author.picture}}" height="95">
+                            <img class="img-thumbnail" alt="{{quote.author.fullname}}" src="{{quote.author.picture}}"
+                                 height="95">
                         </a>
                         <div class="textQuote">{{quote.quote}}
                             <br>
@@ -58,11 +59,10 @@
                 <br>
             </div>
             {% for tag in top_tags %}
-
             <div class="tagsTop">
-                <a class="text-right"
-                   href="{% url 'quotes:find_by_tag' tag.tags__id %}">{{tag.tags__name}}</a>
-
+                <a href="{% url 'quotes:find_by_tag' tag.tags__id %}" style="text-decoration: none">
+                    {{ tag.tags__name }} ({{ tag.quote_count }})
+                </a>
             </div>
             {% endfor %}
             <h6 class="endTags">10 Tags</h6>
@@ -90,7 +90,7 @@
                 </table>
                 <div class="text-center">
                     <a><img src="https://i.pinimg.com/564x/5f/84/44/5f844489090ff6ba808fbd99ca9455a5.jpg"
-                                     width="180"></a>
+                            width="180"></a>
                 </div>
                 <h6 class="endTags">СЛАВА ЗСУ</h6>
                 <br>

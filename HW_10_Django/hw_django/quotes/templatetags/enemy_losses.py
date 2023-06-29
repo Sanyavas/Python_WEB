@@ -1,11 +1,17 @@
 import json
+import os
 import re
 from datetime import datetime
-
 import requests
+
 from bs4 import BeautifulSoup
 
+# BASE_DIR = Path(__file__).resolve().parent.parent.parent
+current_dir = os.path.dirname(os.path.abspath(__file__))
+enemy_loses_json = os.path.join(current_dir, 'json', 'enemy_losses.json')
 base_url = "https://index.minfin.com.ua/ua/russian-invading/casualties"
+# json_path = 'hw_django/quotes/json/enemy_losses.json'
+# json_path = str(pathlib.PurePath(BASE_DIR, 'hw_django', 'quotes', 'json', 'enemy_losses.json').stem)
 
 
 def get_urls():
@@ -63,11 +69,11 @@ def main_enemy():
     url_for_scraping = get_urls()
     r = spider(url_for_scraping)
     r[0]['date'] = r[0]['date'][:10]
-    print("---------------------------")
-    print(f"Enemy Loses updated for {r[0]['date']}")
-    print("---------------------------")
+    print("----------------------------------------")
+    print(f"Enemy Loses updated json for {r[0]['date']}")
+    print("----------------------------------------")
 
-    with open('hw_django/quotes/json/enemy_losses.json', 'w', encoding='utf-8') as fd:
+    with open(enemy_loses_json, 'w', encoding='utf-8') as fd:
         json.dump(r, fd, ensure_ascii=False, indent=4)
 
     return r
@@ -75,3 +81,4 @@ def main_enemy():
 
 if __name__ == '__main__':
     main_enemy()
+

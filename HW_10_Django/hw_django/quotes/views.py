@@ -1,5 +1,4 @@
 import json
-import os
 
 from django.core.paginator import Paginator
 from django.db.models import Count
@@ -8,17 +7,15 @@ from django.db.models import Q
 
 from .models import Author, Quote
 from .forms import QuoteForm, AuthorForm, TagForm
-from .templatetags.enemy_losses import main_enemy
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-enemy_loses_json = os.path.join(current_dir, 'json', 'enemy_losses.json')
+from .templatetags.enemy_losses import main_enemy, enemy_loses_json
 
 
 def main(request):
     # db = get_mongodb()
     # quotes = db.quotes.find()
+
     quotes = Quote.objects.all()
-    per_page = 20
+    per_page = 17
     paginator = Paginator(list(quotes), per_page)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -29,14 +26,19 @@ def main(request):
     top_tags = Quote.objects.values('tags__name', "tags__id") \
                    .annotate(quote_count=Count('tags__name')) \
                    .order_by('-quote_count')[:10]
-    return render(request, "quotes/index.html", context={'quotes': page_obj, "top_tags": top_tags,
-                                                         "losses_orcs": enemy[0], "date_enemy": date_enemy})
+    context = {'quotes': page_obj,
+               "top_tags": top_tags,
+               "losses_orcs": enemy[0],
+               "date_enemy": date_enemy}
+
+    return render(request, "quotes/index.html", context=context)
 
 
 def author_about(request, _id):
     author = Author.objects.get(pk=_id)
+    context = {'author': author}
 
-    return render(request, 'quotes/author.html', context={'author': author})
+    return render(request, 'quotes/author.html', context=context)
 
 
 def add_quote(request):
@@ -87,9 +89,12 @@ def find_by_tag(request, _id):
     with open(enemy_loses_json, 'r', encoding='utf-8') as fd:
         enemy = json.load(fd)
     date_enemy = enemy[0].pop('date')
-
+    context = {'quotes': page_obj,
+               "top_tags": top_tags,
+               "losses_orcs": enemy[0],
+               "date_enemy": date_enemy}
     return render(request, "quotes/index.html",
-                  context={'quotes': page_obj, "top_tags": top_tags, "losses_orcs": enemy[0], "date_enemy": date_enemy})
+                  context=context)
 
 
 def search_quotes(request):
@@ -101,14 +106,18 @@ def search_quotes(request):
         for quote in quotes:
             if quote not in results:
                 results.append(quote)
-        return render(request, "quotes/search.html", context={"quotes": results, "query": query})
+        context = {"quotes": results,
+                   "query": query}
+        return render(request, "quotes/search.html", context=context)
     return redirect(to="quotes:home")
 
 
 def dont_work(request):
-    return render(request, "quotes/dont_work.html", context={})
+    context = {}
+    return render(request, "quotes/dont_work.html", context=context)
 
 
 def run_scrapy_enemy(request):
-    main_enemy()
-    return redirect(to="quotes:home")
+    if request.method == "GET":
+        main_enemy()
+    return redirect(request.META['HTTP_REFERER'])

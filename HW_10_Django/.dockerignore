@@ -1,3 +1,5 @@
 fly.toml
+fly1.toml
 .git/
 *.sqlite3
+**/.env

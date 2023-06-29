@@ -5,6 +5,7 @@ a {
 }
 
 tr {
+    text-transform: uppercase;
     font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
     color: #ad998b;
     text-decoration: none;
@@ -54,8 +55,13 @@ tr {
     line-height: 1px;
     border-bottom: 1px solid #D8D8D8;
     text-align: center;
+}
 
 .leftAlignedImage {
     float: left;
     margin-right: 10px;
+}
+
+.table {
+    background: url("https://i.pinimg.com/originals/df/9c/d8/df9cd8b31bd1aae0903ced002c848eec.gif") no-repeat center;
 }

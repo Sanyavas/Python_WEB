@@ -1,66 +1,69 @@
-import json
-import re
-from datetime import datetime
+"""Horse gait"""
 
-import requests
-from bs4 import BeautifulSoup
+# n = 8
+# w = []
+# w.extend(input("enter the location of the knight (example c5) >>"))
+# x, y = [i for i in w]
+# m = 'abcdefgh'
+# x = m.index(x)
+# y = int(y) - 1
+# matrix = [['. '] * n for i in range(n)]
+# matrix[y][x] = 'N '
+#
+# for i in range(n):
+#     for j in range(n):
+#         if (i - y) ** 2 + (j - x) ** 2 == 5:
+#             matrix[i][j] = '* '
+# matrix.reverse()
+#
+# for row in matrix:
+#     print(*row)
 
-base_url = "https://index.minfin.com.ua/ua/russian-invading/casualties"
-
-
-def get_urls():
-    response = requests.get(base_url)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    content = soup.select('div[class=ajaxmonth] h4[class=normal] a')
-    urls = ['/']
-    prefix = '/month.php?month='
-    for a in content:
-        url = prefix + re.search(r'\d{4}-\d{2}', a['href']).group()
-        urls.append(url)
-    return urls
-
-
-def spider(urls):
-    data = []
-    for url in urls:
-        response = requests.get(base_url + url)
-        soup = BeautifulSoup(response.text, 'html.parser')
-        content = soup.select('ul[class=see-also] li[class=gold]')
-        for el in content:
-            result = {}
-            date = el.find('span', attrs={"class": "black"}).text
-            try:
-                date = datetime.strptime(date, "%d.%m.%Y").isoformat()
-            except ValueError:
-                print(f'Error for date: {date}')
-                continue
-            result.update({'date': date})
-            losses = el.find('div').find('div').find('ul')
-            for l in losses:
-                name, quantity, *_ = l.text.split('—')
-                name = name.strip()
-                quantity = int(re.search(r'\d+', quantity).group())
-                result.update({name: quantity})
-            data.append(result)
-    return data
+import numpy as np
 
 
-def main_enemy():
-    """
-    The main_enemy function scrapes the enemy losses page of the website and returns a list of dictionaries.
-    """
-    url_for_scraping = get_urls()
-    r = spider(url_for_scraping)
-    r[0]['date'] = r[0]['date'][:10]
-    print("---------------------------")
-    print(f"Enemy Loses updated for {r[0]['date']}")
-    print("---------------------------")
+def horse_gait():
+    n = 8
+    w = input("Enter the location of the knight (example c5) >>")
+    m = 'abcdefgh'
+    f = '12345678'
 
-    with open('enemy_losses.json', 'w', encoding='utf-8') as fd:
-        json.dump(r, fd, ensure_ascii=False, indent=4)
+    if len(w) != 2 or not w[0] in m or not w[1] in f:
+        print(f'You entered an incorrect location: {w}')
 
-    return r
+    else:
+        rows, cols = w
+        letters = ('  ', 'a ', 'b ', 'c ', 'd ', 'e ', 'f ', 'g ', 'h ', '  ')
+        digits = ('  ', '1 ', '2 ', '3 ', '4 ', '5 ', '6 ', '7 ', '8 ', '  ')
+        x = m.index(rows)
+        y = int(cols) - 1
+        matrix = np.full((n, n), '. ')
+        matrix[y][x] = 'N '
+
+        indices = np.indices((n, n))
+        distances = np.sqrt((indices[0] - y) ** 2 + (indices[1] - x) ** 2)
+        mask = np.logical_and(distances > 0, distances == np.sqrt(5))
+        matrix[mask] = '* '
+
+        matrix = np.flipud(matrix)
+        border_size = 1
+
+        new_rows = n + 2 * border_size
+        new_cols = n + 2 * border_size
+
+        n_matrix = np.full((new_rows, new_cols), '. ')
+        n_matrix[0] = letters
+
+        for i, digit in enumerate(digits[-2:0:-1]):
+            n_matrix[i+1][-1] = digit
+            n_matrix[i + 1][0] = digit
+
+        n_matrix[-1] = letters
+        n_matrix[border_size:border_size + n, border_size:border_size + n] = matrix
+
+        for row in n_matrix:
+            print(*row)
 
 
 if __name__ == '__main__':
-    main_enemy()
+    horse_gait()

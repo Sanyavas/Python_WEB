@@ -127,7 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
 fly.toml
+fly1.toml
 
 **/.env

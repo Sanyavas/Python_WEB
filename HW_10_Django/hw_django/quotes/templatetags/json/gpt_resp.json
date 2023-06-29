@@ -1,0 +1,21 @@
+{
+    "id": "chatcmpl-7Vfb4M9lWNuqMtQZxIgo9dTOeWtCo",
+    "object": "chat.completion",
+    "created": 1687782422,
+    "model": "gpt-3.5-turbo-0301",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "\"Love is the poetry of the soul, written with the ink of passion and expressed in the language of the heart.\""
+            },
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 59,
+        "completion_tokens": 24,
+        "total_tokens": 83
+    }
+}

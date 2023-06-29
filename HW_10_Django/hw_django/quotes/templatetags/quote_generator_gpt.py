@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 import environ
 
@@ -6,10 +7,12 @@ import openai
 
 from ..models import Quote, Tag, Author
 
-THIS_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
+current_dir = os.path.dirname(os.path.abspath(__file__))
+gpt_resp_json = os.path.join(current_dir, 'json', 'gpt_resp.json')
 
-environ.Env.read_env(THIS_DIR / '.env')
+environ.Env.read_env(BASE_DIR / '.env')
 api_key = env('API_KEY_OPENAI')
 openai.api_key = api_key
 
@@ -30,7 +33,7 @@ def generate_quote():
             {"role": "user", "content": prompt}
         ]
     )
-    with open("hw_django/quotes/json/gpt_resp.json", "w") as file:
+    with open(gpt_resp_json, "w") as file:
         json.dump(response, file, indent=4, ensure_ascii=False)
     total_tokens = response.get("usage").get("total_tokens")
     print("====================")

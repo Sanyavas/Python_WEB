@@ -1,11 +1,15 @@
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from cloudinary.exceptions import Error as CloudinaryError
 
-from .forms import RegisterForm
+from .forms import RegisterForm, AvatarForm
+from .models import Avatar
 
 
 class RegisterView(View):
@@ -39,5 +43,44 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     subject_template_name = 'users/password_reset_subject.txt'
 
 
-def user_data(request):
-    return render(request, "users/user.html", context={})
+@login_required
+def profile(request):
+    """
+    The profile function is used to render the profile page of a user.
+    """
+    user = request.user
+    user_id = request.user.id
+    avatar = Avatar.objects.filter(user_id=user_id).first()
+    return render(request, 'users/profile.html', context={'user': user, 'avatar': avatar})
+
+
+@login_required
+def upload_avatar(request):
+    """
+    The upload_avatar function allows a user to upload an avatar image.
+    """
+    avatar = Avatar.objects.filter(user_id=request.user.id).first()
+    form = AvatarForm()  # Instantiate the form
+
+    if request.method == 'POST':
+        form = AvatarForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                previous_avatar = Avatar.objects.filter(user=request.user).first()
+                avatar = form.save(commit=False)
+                avatar.user = request.user
+
+                # Validate if the uploaded file is an image
+                uploaded_file = form.cleaned_data['image']
+                if not uploaded_file.content_type.startswith('image'):
+                    raise ValidationError("Invalid file format. Please upload an image.")
+
+                avatar.save()
+                if previous_avatar:
+                    previous_avatar.delete()
+
+                return redirect('users:profile')
+            except (CloudinaryError, ValidationError) as e:
+                messages.warning(request, "Invalid file format.")
+
+    return render(request, 'users/user_upload_avatar.html', {'form': form, 'avatar': avatar})

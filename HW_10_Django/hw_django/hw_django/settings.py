@@ -2,6 +2,10 @@ import os
 from pathlib import Path
 import environ
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -35,6 +39,7 @@ INSTALLED_APPS = [
     'django_apscheduler',
     'quotes',
     'users',
+    "cloudinary",
 ]
 
 MIDDLEWARE = [
@@ -60,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'hw_django.context_processors.avatar_url',
             ],
         },
     },
@@ -104,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Kiev'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -136,3 +142,9 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # django_apscheduler
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+
+cloudinary.config(
+    cloud_name=env("CLOUD_NAME"),
+    api_key=env("CLOUD_API_KAY"),
+    api_secret=env("CLOUD_API_SECRET")
+)
