@@ -1,3 +1,5 @@
+[![Readme Quotes](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=white)](https://github.com/sanyavas/github-readme-quotes)
+
 # Python Web 10
 
 ## Використання `main.py` як єдиної точки входу
