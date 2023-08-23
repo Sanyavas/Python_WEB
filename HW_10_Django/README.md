@@ -1,7 +1,7 @@
 # Змінні оточення
 
 
-* '.env
+### '.env
 * DATABASE_USER="name_user"
 * DATABASE_PASSWORD="password"
 * DATABASE_NAME="name_postgres"
