@@ -79,14 +79,14 @@
                         <th scope="col">Кількість</th>
                     </tr>
                     </thead>
-                    {% for key, value in losses_orcs.items %}
                     <tbody>
+                    {% for key, value in losses_orcs.items %}
                     <tr>
                         <td>{{key}}</td>
                         <td>{{value}}</td>
                     </tr>
-                    </tbody>
                     {% endfor %}
+                    </tbody>
                 </table>
                 <div class="text-center">
                     <a><img src="https://i.pinimg.com/564x/5f/84/44/5f844489090ff6ba808fbd99ca9455a5.jpg"
@@ -99,6 +99,11 @@
         <hr>
     </div>
 </div>
-
+<style>
+    .table.table-bordered {
+        background: url("https://i.pinimg.com/originals/df/9c/d8/df9cd8b31bd1aae0903ced002c848eec.gif") no-repeat center;
+        background-size: cover; /* Add this if you want the background to cover the whole table */
+    }
+</style>
 
 {% endblock %}

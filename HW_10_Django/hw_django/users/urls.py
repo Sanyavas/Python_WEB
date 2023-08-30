@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetDoneView, PasswordResetConfirmView, \
     PasswordResetCompleteView, FormView
 from .forms import LoginForm
-from .views import RegisterView, ResetPasswordView, profile, upload_avatar
+from .views import RegisterView, ResetPasswordView, profile, upload_avatar, signup_redirect
 
 app_name = "users"
 
@@ -25,5 +25,6 @@ urlpatterns = [
          PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
          name='password_reset_complete'),
     path('user_upload_avatar/', upload_avatar, name='upload_avatar'),
-    path('profile/', profile, name='profile')
+    path('profile/', profile, name='profile'),
+    path('social/signup/', signup_redirect, name='signup_redirect'),
 ]

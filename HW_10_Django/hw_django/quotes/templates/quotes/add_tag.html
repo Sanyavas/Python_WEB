@@ -5,7 +5,7 @@
 <div class="container">
     <h2 class="titleForm">Add Tag:</h2>
     <br>
-    <form class="col-sm-6" method="POST" action="{% url 'quotes:add_tag' %}">
+    <form class="col-sm-8" method="POST" action="{% url 'quotes:add_tag' %}">
         {% csrf_token %}
         <div class="form-group">
             <label>Tage:</label>

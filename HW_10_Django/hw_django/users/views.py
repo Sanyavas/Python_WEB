@@ -84,3 +84,8 @@ def upload_avatar(request):
                 messages.warning(request, "Invalid file format.")
 
     return render(request, 'users/user_upload_avatar.html', {'form': form, 'avatar': avatar})
+
+
+def signup_redirect(request):
+    messages.error(request, "Something wrong here, it may be that you already have account!")
+    return redirect(to='quotes:home')

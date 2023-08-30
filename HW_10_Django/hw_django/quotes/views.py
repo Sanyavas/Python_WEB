@@ -19,6 +19,7 @@ def main(request):
     paginator = Paginator(list(quotes), per_page)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
     with open(enemy_loses_json, 'r', encoding='utf-8') as fd:
         enemy = json.load(fd)
     date_enemy = enemy[0].pop('date')
@@ -26,6 +27,7 @@ def main(request):
     top_tags = Quote.objects.values('tags__name', "tags__id") \
                    .annotate(quote_count=Count('tags__name')) \
                    .order_by('-quote_count')[:10]
+
     context = {'quotes': page_obj,
                "top_tags": top_tags,
                "losses_orcs": enemy[0],
@@ -93,8 +95,7 @@ def find_by_tag(request, _id):
                "top_tags": top_tags,
                "losses_orcs": enemy[0],
                "date_enemy": date_enemy}
-    return render(request, "quotes/index.html",
-                  context=context)
+    return render(request, "quotes/index.html", context=context)
 
 
 def search_quotes(request):
@@ -118,6 +119,6 @@ def dont_work(request):
 
 
 def run_scrapy_enemy(request):
-    if request.method == "GET":
+    if request.method == "POST":
         main_enemy()
     return redirect(request.META['HTTP_REFERER'])

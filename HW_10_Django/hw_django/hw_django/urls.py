@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('quotes.urls', namespace='default')),
     path('users/', include('users.urls')),
     path('author/', include('quotes.urls')),
+    path('accounts/', include('allauth.urls')),
 ]

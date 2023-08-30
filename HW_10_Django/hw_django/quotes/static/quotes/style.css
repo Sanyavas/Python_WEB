@@ -1,3 +1,4 @@
+
 a {
     font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
     color: #ad998b;
@@ -62,6 +63,19 @@ tr {
     margin-right: 10px;
 }
 
-.table {
+.table table-bordered{
     background: url("https://i.pinimg.com/originals/df/9c/d8/df9cd8b31bd1aae0903ced002c848eec.gif") no-repeat center;
+}
+
+.form-box {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    background-image: url("https://i.pinimg.com/564x/bb/e0/8e/bbe08ed1057e3c38ef9e3982485e0721.jpg");
+    background-size: 150% auto;
+    background-position: center top;
+    background-repeat: no-repeat;
 }

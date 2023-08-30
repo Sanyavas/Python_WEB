@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="shortcut icon" href="/static/quotes/img/ok.jpg">
-    {% load static %}
+    {% load static account socialaccount %}
     <link rel="stylesheet" href="{% static 'quotes/style.css' %}">
     <title>TheBestSite</title>
 </head>
@@ -52,6 +52,7 @@
                 {% if user.is_superuser %}
                 <li><a href="/admin">Administration</a></li>
                 {% endif %}
+
                 {% if user.is_authenticated %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
@@ -72,8 +73,12 @@
                     </ul>
                 </li>
                 {% else %}
-                <li><a href="/users/signup">Sign up</a></li>
-                <li><a href="/users/signin">Login</a></li>
+                <div class="login-button" style="margin-top: 5px;">
+                    <a href="/users/signin">
+                        <img src="https://www.pngall.com/wp-content/uploads/5/Account-Login-Button-PNG-Pic.png"
+                             height="40">
+                    </a>
+                </div>
                 {% endif %}
 
             </ul>
@@ -95,14 +100,13 @@
         <div class="social mb-1">
             <a href="https://github.com/Sanyavas" target="_blank" rel="noopener noreferre">
                 <img src="https://s.dou.ua/assets/img/github.svg" width="25" height="25"></a>
-            <a href="https://www.linkedin.com/in/oleksandr-vasylyna-64bb71252/" target="_blank"
+            <a href="https://www.linkedin.com/in/oleksandr-vasylyna/" target="_blank"
                rel="noopener noreferre">
                 <img src="https://s.dou.ua/assets/img/linkedin.png" width="25" height="25"></a>
         </div>
         <div class="fs-5 text-center">
             <h6>SANYAVAS &copy; 2023</h6>
         </div>
-
     </div>
 </footer>
 

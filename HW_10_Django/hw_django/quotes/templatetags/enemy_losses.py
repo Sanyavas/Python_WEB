@@ -66,17 +66,20 @@ def main_enemy():
     """
     The main_enemy function scrapes the enemy losses page of the website and returns a list of dictionaries.
     """
-    url_for_scraping = get_urls()
-    r = spider(url_for_scraping)
-    r[0]['date'] = r[0]['date'][:10]
-    print("----------------------------------------")
-    print(f"Enemy Loses updated json for {r[0]['date']}")
-    print("----------------------------------------")
+    try:
+        url_for_scraping = get_urls()
+        r = spider(url_for_scraping)
+        r[0]['date'] = r[0]['date'][:10]
+        print("----------------------------------------")
+        print(f"Enemy Loses updated json for {r[0]['date']}. Date start function:{datetime.now()}")
+        print("----------------------------------------")
 
-    with open(enemy_loses_json, 'w', encoding='utf-8') as fd:
-        json.dump(r, fd, ensure_ascii=False, indent=4)
+        with open(enemy_loses_json, 'w', encoding='utf-8') as fd:
+            json.dump(r, fd, ensure_ascii=False, indent=4)
 
-    return r
+        return r
+    except Exception as ex:
+        return f"Exception add enemy loses: {ex}"
 
 
 if __name__ == '__main__':

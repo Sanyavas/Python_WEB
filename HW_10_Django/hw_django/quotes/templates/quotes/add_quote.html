@@ -2,13 +2,14 @@
 
 {% block content %}
 <div class="container">
+
     <h2 class="titleForm">Add Quote:</h2>
     <br>
     <form class="col-sm-8" method="POST" action="{% url 'quotes:add_quote' %}">
         {% csrf_token %}
         <div class="form-group">
             <label>Author:</label>
-            {{form.author}}
+            {{ form.author }}
             <span>{{ form.errors.author }}</span>
         </div>
         <div class="form-group">
@@ -23,9 +24,10 @@
         </div>
         <br>
         <div class="buttonForm">
-            <button type="submit" class="btn btn-primary btn">Submit</button>
-            <button type="reset" class="btn btn-secondary btn">Reset</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
         </div>
     </form>
+
 </div>
 {% endblock %}

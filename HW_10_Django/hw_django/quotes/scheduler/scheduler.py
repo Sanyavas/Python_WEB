@@ -1,9 +1,14 @@
+import sys
+import logging
+
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore
-import sys
 
 from ..templatetags.quote_generator_gpt import gpt_creator
 from ..templatetags.enemy_losses import main_enemy
+
+
+logging.basicConfig(filename='scheduler.log', level=logging.INFO)
 
 
 def start():
@@ -12,11 +17,11 @@ def start():
     """
     scheduler = BackgroundScheduler()
     scheduler.add_jobstore(DjangoJobStore(), "default")
-    # run this job every day at 9.30 p.m.
-    scheduler.add_job(main_enemy, 'cron', hour=7, minute=15, replace_existing=True, id="enemy_losses",
+
+    scheduler.add_job(main_enemy, 'interval', minutes=30, replace_existing=True, id="enemy_losses",
                       name='enemy_losses', jobstore='default')
-    # run this job every 24 hours
-    scheduler.add_job(gpt_creator, 'cron', hour=7, minute=15, replace_existing=True, id="gpt_creator",
+    scheduler.add_job(gpt_creator, 'interval', days=2, replace_existing=True, id="gpt_creator",
                       name='gpt_creator', jobstore='default')
     scheduler.start()
+    # logging.info(f"Scheduler started... {datetime.datetime.now()}")
     print("Scheduler started...", file=sys.stdout)

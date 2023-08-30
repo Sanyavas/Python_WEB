@@ -2,6 +2,7 @@ import json
 import os
 from pathlib import Path
 import environ
+from datetime import datetime
 
 import openai
 
@@ -21,25 +22,28 @@ def generate_quote():
     """
      The function uses the OpenAI API to generate a quote about poetry.
     """
-    worker = "You are a creative writer."
-    prompt = """Create creative quote about poetry, poetry should be on love style.
-    Quote should be on English language, and contain about 300 symbols
-    Write only quote, don't add any recommendation and explanations"""
-    print(f"Start request to GPT")
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": worker},
-            {"role": "user", "content": prompt}
-        ]
-    )
-    with open(gpt_resp_json, "w") as file:
-        json.dump(response, file, indent=4, ensure_ascii=False)
-    total_tokens = response.get("usage").get("total_tokens")
-    print("====================")
-    print(f'Total tokens: {total_tokens}')
-    print("====================")
-    return response.choices[0].message.content.strip()
+    try:
+        worker = "You are a creative writer."
+        prompt = """Create creative quote about poetry, poetry should be on love style.
+        Quote should be on English language, and contain about 300 symbols
+        Write only quote, don't add any recommendation and explanations"""
+        print(f"Start request to GPT")
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": worker},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        with open(gpt_resp_json, "w") as file:
+            json.dump(response, file, indent=4, ensure_ascii=False)
+        total_tokens = response.get("usage").get("total_tokens")
+        print("====================")
+        print(f'Total tokens: {total_tokens}. Date: {datetime.now()}')
+        print("====================")
+        return response.choices[0].message.content.strip()
+    except Exception as ex:
+        return f'Exception generate GPT quote: {ex}'
 
 
 def add_quote_to_db(quote: str):
