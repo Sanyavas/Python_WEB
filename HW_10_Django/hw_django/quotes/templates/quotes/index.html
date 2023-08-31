@@ -16,8 +16,7 @@
                     <div class="clearfix">
                         <a class="col-md-2 float-md-end mb-3 ms-md-3l"
                            href="{% url 'quotes:author_about' quote.author.id %}">
-                            <img class="img-thumbnail" alt="{{quote.author.fullname}}" src="{{quote.author.picture}}"
-                                 height="95">
+                            <img class="img-thumbnail" alt="{{quote.author.fullname}}" src="{{quote.author.picture}}">
                         </a>
                         <div class="textQuote">{{quote.quote}}
                             <br>
@@ -104,6 +103,20 @@
         background: url("https://i.pinimg.com/originals/df/9c/d8/df9cd8b31bd1aae0903ced002c848eec.gif") no-repeat center;
         background-size: cover; /* Add this if you want the background to cover the whole table */
     }
+
+    /* Стиль за замовчуванням (для настільних комп'ютерів, планшетів тощо) */
+    .img-thumbnail {
+        width: auto; /* or whatever width you want */
+        height: 95px;
+}
+
+/* Медіа-запит для екранів з максимальною шириною 768px (зазвичай для смартфонів) */
+    @media (max-width: 768px) {
+    .img-thumbnail {
+        width: auto; /* or you can set a specific width */
+        height: 270px; /* reducing the size for mobile view */
+    }
+}
 </style>
 
 {% endblock %}
