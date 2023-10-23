@@ -1,9 +1,6 @@
 import os
 from pathlib import Path
 import environ
-
-import cloudinary
-import cloudinary.uploader
 import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
